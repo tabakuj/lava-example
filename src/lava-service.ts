@@ -1,18 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { DirectSecp256k1Wallet } from '@cosmjs/proto-signing';
-import { OfflineDirectSigner } from '@keplr-wallet/types';
+import { DirectSecp256k1Wallet, OfflineDirectSigner } from '@cosmjs/proto-signing';
 import { fromHex } from '@cosmjs/encoding';
+import { getSigningLavanetClient } from '@lavanet/lavajs';
 import { SigningStargateClient } from '@cosmjs/stargate';
-import { readFile } from 'fs/promises';
-import { getSigninglavaClient } from '@lavanet/lavajs';
 
 const unInitializedClient = new Error('client uninitialized');
 const AdminHex =
-  '755ac36e9457ca8193673aea2341f577b471ad9a3e477a3196e6cfe89dd617c6';
+    '3a896b41413d66cdff87d3940a54f9dbcd2d1b42e48b6593783a905958093192';
 
-const AdminPublicKey = 'lava@1wp2jerhaddenaytmxl6e77ewk68gj69863mrpg';
-const LAVA_TESTNET_CHAIN_ID = 'lava'; //'lava-testnet-1';
+const AdminPublicKey = 'lava@1rysl7yuqjxsj0hkzhy6z55shvw6dml4g9nh9am';
 const LAVA_PUBLIC_RPC = 'http://127.0.0.1:26657/';
+
 @Injectable()
 export class LavaClientService2 {
   async GetGeneralData() {
@@ -27,37 +25,16 @@ export class LavaClientService2 {
   }
   getAdminSignerFromPriKey = async (): Promise<OfflineDirectSigner> => {
     // const key= String.fromCharCode.apply(AdminHex, AdminHex);
-    return DirectSecp256k1Wallet.fromKey(fromHex(AdminHex), 'lava');
-  };
-  getAliceSignerFromPriKey = async (): Promise<OfflineDirectSigner> => {
-    return DirectSecp256k1Wallet.fromKey(
-      fromHex(
-        (
-          await readFile(
-            '/Users/user/projects/pocs/lava-poc/src/simd.alice.private.key',
-          )
-        ).toString(),
-      ),
-      'lava',
-    );
-  };
-  getSignerFromPriKey2 = async (): Promise<OfflineDirectSigner> => {
-    return await DirectSecp256k1Wallet.fromKey(Buffer.from(AdminHex, 'hex'));
+    return DirectSecp256k1Wallet.fromKey(fromHex(AdminHex), 'lava@');
   };
 
-  async getSignerStargateClient(): Promise<SigningStargateClient | undefined> {
-    const offlineSigner = await this.getSignerFromPriKey2();
-    //const { createRPCQueryClient } = lava.ClientFactory;
+  async buySubscription(projectName: string, projectKey: string) {
+    const offlineSigner = await this.getAdminSignerFromPriKey();
 
-    const starGateClient = await getSigninglavaClient({
+    const starGateClient = await getSigningLavanetClient({
       rpcEndpoint: LAVA_PUBLIC_RPC,
       signer: offlineSigner,
     });
-    //const starGateClient = await SigningStargateClient.connectWithSigner(LAVA_PUBLIC_RPC, offlineSigner)
-    return starGateClient;
-  }
-  async buySubscription(projectName: string, projectKey: string) {
-    const starGateClient = await this.getSignerStargateClient();
     if (!starGateClient) {
       return 'Failed to get stargate Client';
     }
@@ -72,7 +49,7 @@ export class LavaClientService2 {
           projectKeys: [
             {
               key: projectKey,
-              types: 1,
+              kinds: 1,
             },
           ],
           policy: null,
