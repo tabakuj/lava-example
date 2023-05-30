@@ -3,13 +3,10 @@ import { DirectSecp256k1Wallet, OfflineDirectSigner } from '@cosmjs/proto-signin
 import { fromHex } from '@cosmjs/encoding';
 import { getSigningLavanetClient } from '@lavanet/lavajs';
 import { SigningStargateClient } from '@cosmjs/stargate';
+import {AdminHex, AdminPublicKey, LAVA_PUBLIC_RPC} from "./Constants";
 
 const unInitializedClient = new Error('client uninitialized');
-const AdminHex =
-    '3a896b41413d66cdff87d3940a54f9dbcd2d1b42e48b6593783a905958093192';
 
-const AdminPublicKey = 'lava@1rysl7yuqjxsj0hkzhy6z55shvw6dml4g9nh9am';
-const LAVA_PUBLIC_RPC = 'http://127.0.0.1:26657/';
 
 @Injectable()
 export class LavaClientService2 {
@@ -46,6 +43,8 @@ export class LavaClientService2 {
           name: projectName,
           description: 'testing purposes',
           enabled: true,
+          usedCu: 1,
+          subscription: AdminPublicKey,
           projectKeys: [
             {
               key: projectKey,
@@ -69,6 +68,7 @@ export class LavaClientService2 {
         fee,
         memo,
       );
+      console.log('send the request');
       console.log(response);
     } catch (ex) {
       console.error(ex);
