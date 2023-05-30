@@ -1,6 +1,6 @@
 import { RelayRequest, RelayRequestSDKType, RelayReply, RelayReplySDKType } from "../pairing/relay";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 export interface ResponseConflict {
   conflictRelayData0?: ConflictRelayData;
   conflictRelayData1?: ConflictRelayData;
@@ -61,19 +61,7 @@ export const ResponseConflict = {
     }
     return message;
   },
-  fromJSON(object: any): ResponseConflict {
-    return {
-      conflictRelayData0: isSet(object.conflictRelayData0) ? ConflictRelayData.fromJSON(object.conflictRelayData0) : undefined,
-      conflictRelayData1: isSet(object.conflictRelayData1) ? ConflictRelayData.fromJSON(object.conflictRelayData1) : undefined
-    };
-  },
-  toJSON(message: ResponseConflict): unknown {
-    const obj: any = {};
-    message.conflictRelayData0 !== undefined && (obj.conflictRelayData0 = message.conflictRelayData0 ? ConflictRelayData.toJSON(message.conflictRelayData0) : undefined);
-    message.conflictRelayData1 !== undefined && (obj.conflictRelayData1 = message.conflictRelayData1 ? ConflictRelayData.toJSON(message.conflictRelayData1) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<ResponseConflict>): ResponseConflict {
+  fromPartial(object: DeepPartial<ResponseConflict>): ResponseConflict {
     const message = createBaseResponseConflict();
     message.conflictRelayData0 = object.conflictRelayData0 !== undefined && object.conflictRelayData0 !== null ? ConflictRelayData.fromPartial(object.conflictRelayData0) : undefined;
     message.conflictRelayData1 = object.conflictRelayData1 !== undefined && object.conflictRelayData1 !== null ? ConflictRelayData.fromPartial(object.conflictRelayData1) : undefined;
@@ -116,19 +104,7 @@ export const ConflictRelayData = {
     }
     return message;
   },
-  fromJSON(object: any): ConflictRelayData {
-    return {
-      request: isSet(object.request) ? RelayRequest.fromJSON(object.request) : undefined,
-      reply: isSet(object.reply) ? RelayReply.fromJSON(object.reply) : undefined
-    };
-  },
-  toJSON(message: ConflictRelayData): unknown {
-    const obj: any = {};
-    message.request !== undefined && (obj.request = message.request ? RelayRequest.toJSON(message.request) : undefined);
-    message.reply !== undefined && (obj.reply = message.reply ? RelayReply.toJSON(message.reply) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<ConflictRelayData>): ConflictRelayData {
+  fromPartial(object: DeepPartial<ConflictRelayData>): ConflictRelayData {
     const message = createBaseConflictRelayData();
     message.request = object.request !== undefined && object.request !== null ? RelayRequest.fromPartial(object.request) : undefined;
     message.reply = object.reply !== undefined && object.reply !== null ? RelayReply.fromPartial(object.reply) : undefined;
@@ -171,19 +147,7 @@ export const FinalizationConflict = {
     }
     return message;
   },
-  fromJSON(object: any): FinalizationConflict {
-    return {
-      relayReply0: isSet(object.relayReply0) ? RelayReply.fromJSON(object.relayReply0) : undefined,
-      relayReply1: isSet(object.relayReply1) ? RelayReply.fromJSON(object.relayReply1) : undefined
-    };
-  },
-  toJSON(message: FinalizationConflict): unknown {
-    const obj: any = {};
-    message.relayReply0 !== undefined && (obj.relayReply0 = message.relayReply0 ? RelayReply.toJSON(message.relayReply0) : undefined);
-    message.relayReply1 !== undefined && (obj.relayReply1 = message.relayReply1 ? RelayReply.toJSON(message.relayReply1) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<FinalizationConflict>): FinalizationConflict {
+  fromPartial(object: DeepPartial<FinalizationConflict>): FinalizationConflict {
     const message = createBaseFinalizationConflict();
     message.relayReply0 = object.relayReply0 !== undefined && object.relayReply0 !== null ? RelayReply.fromPartial(object.relayReply0) : undefined;
     message.relayReply1 = object.relayReply1 !== undefined && object.relayReply1 !== null ? RelayReply.fromPartial(object.relayReply1) : undefined;

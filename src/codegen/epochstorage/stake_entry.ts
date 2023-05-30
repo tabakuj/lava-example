@@ -1,6 +1,6 @@
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
 import { Endpoint, EndpointSDKType } from "./endpoint";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface StakeEntry {
   stake?: Coin;
@@ -91,33 +91,7 @@ export const StakeEntry = {
     }
     return message;
   },
-  fromJSON(object: any): StakeEntry {
-    return {
-      stake: isSet(object.stake) ? Coin.fromJSON(object.stake) : undefined,
-      address: isSet(object.address) ? String(object.address) : "",
-      stakeAppliedBlock: isSet(object.stakeAppliedBlock) ? Long.fromValue(object.stakeAppliedBlock) : Long.UZERO,
-      endpoints: Array.isArray(object?.endpoints) ? object.endpoints.map((e: any) => Endpoint.fromJSON(e)) : [],
-      geolocation: isSet(object.geolocation) ? Long.fromValue(object.geolocation) : Long.UZERO,
-      chain: isSet(object.chain) ? String(object.chain) : "",
-      moniker: isSet(object.moniker) ? String(object.moniker) : ""
-    };
-  },
-  toJSON(message: StakeEntry): unknown {
-    const obj: any = {};
-    message.stake !== undefined && (obj.stake = message.stake ? Coin.toJSON(message.stake) : undefined);
-    message.address !== undefined && (obj.address = message.address);
-    message.stakeAppliedBlock !== undefined && (obj.stakeAppliedBlock = (message.stakeAppliedBlock || Long.UZERO).toString());
-    if (message.endpoints) {
-      obj.endpoints = message.endpoints.map(e => e ? Endpoint.toJSON(e) : undefined);
-    } else {
-      obj.endpoints = [];
-    }
-    message.geolocation !== undefined && (obj.geolocation = (message.geolocation || Long.UZERO).toString());
-    message.chain !== undefined && (obj.chain = message.chain);
-    message.moniker !== undefined && (obj.moniker = message.moniker);
-    return obj;
-  },
-  fromPartial(object: Partial<StakeEntry>): StakeEntry {
+  fromPartial(object: DeepPartial<StakeEntry>): StakeEntry {
     const message = createBaseStakeEntry();
     message.stake = object.stake !== undefined && object.stake !== null ? Coin.fromPartial(object.stake) : undefined;
     message.address = object.address ?? "";

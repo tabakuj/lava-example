@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** Params defines the parameters for the module. */
 export interface Params {
@@ -46,19 +46,7 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    return {
-      geolocationCount: isSet(object.geolocationCount) ? Long.fromValue(object.geolocationCount) : Long.UZERO,
-      maxCU: isSet(object.maxCU) ? Long.fromValue(object.maxCU) : Long.UZERO
-    };
-  },
-  toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.geolocationCount !== undefined && (obj.geolocationCount = (message.geolocationCount || Long.UZERO).toString());
-    message.maxCU !== undefined && (obj.maxCU = (message.maxCU || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Params>): Params {
+  fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
     message.geolocationCount = object.geolocationCount !== undefined && object.geolocationCount !== null ? Long.fromValue(object.geolocationCount) : Long.UZERO;
     message.maxCU = object.maxCU !== undefined && object.maxCU !== null ? Long.fromValue(object.maxCU) : Long.UZERO;

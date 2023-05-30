@@ -1,6 +1,6 @@
 import { Spec, SpecSDKType } from "./spec";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 export interface SpecAddProposal {
   title: string;
   description: string;
@@ -54,25 +54,7 @@ export const SpecAddProposal = {
     }
     return message;
   },
-  fromJSON(object: any): SpecAddProposal {
-    return {
-      title: isSet(object.title) ? String(object.title) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      specs: Array.isArray(object?.specs) ? object.specs.map((e: any) => Spec.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: SpecAddProposal): unknown {
-    const obj: any = {};
-    message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
-    if (message.specs) {
-      obj.specs = message.specs.map(e => e ? Spec.toJSON(e) : undefined);
-    } else {
-      obj.specs = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<SpecAddProposal>): SpecAddProposal {
+  fromPartial(object: DeepPartial<SpecAddProposal>): SpecAddProposal {
     const message = createBaseSpecAddProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";

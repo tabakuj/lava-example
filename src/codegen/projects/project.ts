@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export enum KeyType {
   NONE = 0,
@@ -212,37 +212,7 @@ export const Project = {
     }
     return message;
   },
-  fromJSON(object: any): Project {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      subscription: isSet(object.subscription) ? String(object.subscription) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      enabled: isSet(object.enabled) ? Boolean(object.enabled) : false,
-      projectKeys: Array.isArray(object?.projectKeys) ? object.projectKeys.map((e: any) => ProjectKey.fromJSON(e)) : [],
-      adminPolicy: isSet(object.adminPolicy) ? Policy.fromJSON(object.adminPolicy) : undefined,
-      usedCu: isSet(object.usedCu) ? Long.fromValue(object.usedCu) : Long.UZERO,
-      subscriptionPolicy: isSet(object.subscriptionPolicy) ? Policy.fromJSON(object.subscriptionPolicy) : undefined,
-      snapshot: isSet(object.snapshot) ? Long.fromValue(object.snapshot) : Long.UZERO
-    };
-  },
-  toJSON(message: Project): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    message.subscription !== undefined && (obj.subscription = message.subscription);
-    message.description !== undefined && (obj.description = message.description);
-    message.enabled !== undefined && (obj.enabled = message.enabled);
-    if (message.projectKeys) {
-      obj.projectKeys = message.projectKeys.map(e => e ? ProjectKey.toJSON(e) : undefined);
-    } else {
-      obj.projectKeys = [];
-    }
-    message.adminPolicy !== undefined && (obj.adminPolicy = message.adminPolicy ? Policy.toJSON(message.adminPolicy) : undefined);
-    message.usedCu !== undefined && (obj.usedCu = (message.usedCu || Long.UZERO).toString());
-    message.subscriptionPolicy !== undefined && (obj.subscriptionPolicy = message.subscriptionPolicy ? Policy.toJSON(message.subscriptionPolicy) : undefined);
-    message.snapshot !== undefined && (obj.snapshot = (message.snapshot || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Project>): Project {
+  fromPartial(object: DeepPartial<Project>): Project {
     const message = createBaseProject();
     message.index = object.index ?? "";
     message.subscription = object.subscription ?? "";
@@ -285,17 +255,7 @@ export const KeyTypeObject = {
     }
     return message;
   },
-  fromJSON(object: any): KeyTypeObject {
-    return {
-      types: isSet(object.types) ? keyTypeFromJSON(object.types) : 0
-    };
-  },
-  toJSON(message: KeyTypeObject): unknown {
-    const obj: any = {};
-    message.types !== undefined && (obj.types = keyTypeToJSON(message.types));
-    return obj;
-  },
-  fromPartial(object: Partial<KeyTypeObject>): KeyTypeObject {
+  fromPartial(object: DeepPartial<KeyTypeObject>): KeyTypeObject {
     const message = createBaseKeyTypeObject();
     message.types = object.types ?? 0;
     return message;
@@ -337,23 +297,7 @@ export const ProjectKey = {
     }
     return message;
   },
-  fromJSON(object: any): ProjectKey {
-    return {
-      key: isSet(object.key) ? String(object.key) : "",
-      types: Array.isArray(object?.types) ? object.types.map((e: any) => KeyTypeObject.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: ProjectKey): unknown {
-    const obj: any = {};
-    message.key !== undefined && (obj.key = message.key);
-    if (message.types) {
-      obj.types = message.types.map(e => e ? KeyTypeObject.toJSON(e) : undefined);
-    } else {
-      obj.types = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<ProjectKey>): ProjectKey {
+  fromPartial(object: DeepPartial<ProjectKey>): ProjectKey {
     const message = createBaseProjectKey();
     message.key = object.key ?? "";
     message.types = object.types?.map(e => KeyTypeObject.fromPartial(e)) || [];
@@ -417,29 +361,7 @@ export const Policy = {
     }
     return message;
   },
-  fromJSON(object: any): Policy {
-    return {
-      chainPolicies: Array.isArray(object?.chainPolicies) ? object.chainPolicies.map((e: any) => ChainPolicy.fromJSON(e)) : [],
-      geolocationProfile: isSet(object.geolocationProfile) ? Long.fromValue(object.geolocationProfile) : Long.UZERO,
-      totalCuLimit: isSet(object.totalCuLimit) ? Long.fromValue(object.totalCuLimit) : Long.UZERO,
-      epochCuLimit: isSet(object.epochCuLimit) ? Long.fromValue(object.epochCuLimit) : Long.UZERO,
-      maxProvidersToPair: isSet(object.maxProvidersToPair) ? Long.fromValue(object.maxProvidersToPair) : Long.UZERO
-    };
-  },
-  toJSON(message: Policy): unknown {
-    const obj: any = {};
-    if (message.chainPolicies) {
-      obj.chainPolicies = message.chainPolicies.map(e => e ? ChainPolicy.toJSON(e) : undefined);
-    } else {
-      obj.chainPolicies = [];
-    }
-    message.geolocationProfile !== undefined && (obj.geolocationProfile = (message.geolocationProfile || Long.UZERO).toString());
-    message.totalCuLimit !== undefined && (obj.totalCuLimit = (message.totalCuLimit || Long.UZERO).toString());
-    message.epochCuLimit !== undefined && (obj.epochCuLimit = (message.epochCuLimit || Long.UZERO).toString());
-    message.maxProvidersToPair !== undefined && (obj.maxProvidersToPair = (message.maxProvidersToPair || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Policy>): Policy {
+  fromPartial(object: DeepPartial<Policy>): Policy {
     const message = createBasePolicy();
     message.chainPolicies = object.chainPolicies?.map(e => ChainPolicy.fromPartial(e)) || [];
     message.geolocationProfile = object.geolocationProfile !== undefined && object.geolocationProfile !== null ? Long.fromValue(object.geolocationProfile) : Long.UZERO;
@@ -485,23 +407,7 @@ export const ChainPolicy = {
     }
     return message;
   },
-  fromJSON(object: any): ChainPolicy {
-    return {
-      chainId: isSet(object.chainId) ? String(object.chainId) : "",
-      apis: Array.isArray(object?.apis) ? object.apis.map((e: any) => String(e)) : []
-    };
-  },
-  toJSON(message: ChainPolicy): unknown {
-    const obj: any = {};
-    message.chainId !== undefined && (obj.chainId = message.chainId);
-    if (message.apis) {
-      obj.apis = message.apis.map(e => e);
-    } else {
-      obj.apis = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<ChainPolicy>): ChainPolicy {
+  fromPartial(object: DeepPartial<ChainPolicy>): ChainPolicy {
     const message = createBaseChainPolicy();
     message.chainId = object.chainId ?? "";
     message.apis = object.apis?.map(e => e) || [];
@@ -537,17 +443,7 @@ export const ProtoDeveloperData = {
     }
     return message;
   },
-  fromJSON(object: any): ProtoDeveloperData {
-    return {
-      projectID: isSet(object.projectID) ? String(object.projectID) : ""
-    };
-  },
-  toJSON(message: ProtoDeveloperData): unknown {
-    const obj: any = {};
-    message.projectID !== undefined && (obj.projectID = message.projectID);
-    return obj;
-  },
-  fromPartial(object: Partial<ProtoDeveloperData>): ProtoDeveloperData {
+  fromPartial(object: DeepPartial<ProtoDeveloperData>): ProtoDeveloperData {
     const message = createBaseProtoDeveloperData();
     message.projectID = object.projectID ?? "";
     return message;
@@ -610,29 +506,7 @@ export const ProjectData = {
     }
     return message;
   },
-  fromJSON(object: any): ProjectData {
-    return {
-      name: isSet(object.name) ? String(object.name) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      enabled: isSet(object.enabled) ? Boolean(object.enabled) : false,
-      projectKeys: Array.isArray(object?.projectKeys) ? object.projectKeys.map((e: any) => ProjectKey.fromJSON(e)) : [],
-      policy: isSet(object.policy) ? Policy.fromJSON(object.policy) : undefined
-    };
-  },
-  toJSON(message: ProjectData): unknown {
-    const obj: any = {};
-    message.name !== undefined && (obj.name = message.name);
-    message.description !== undefined && (obj.description = message.description);
-    message.enabled !== undefined && (obj.enabled = message.enabled);
-    if (message.projectKeys) {
-      obj.projectKeys = message.projectKeys.map(e => e ? ProjectKey.toJSON(e) : undefined);
-    } else {
-      obj.projectKeys = [];
-    }
-    message.policy !== undefined && (obj.policy = message.policy ? Policy.toJSON(message.policy) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<ProjectData>): ProjectData {
+  fromPartial(object: DeepPartial<ProjectData>): ProjectData {
     const message = createBaseProjectData();
     message.name = object.name ?? "";
     message.description = object.description ?? "";

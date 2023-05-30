@@ -1,7 +1,7 @@
 import { Params, ParamsSDKType } from "./params";
 import { Project, ProjectSDKType } from "./project";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -60,14 +60,7 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    return {};
-  },
-  toJSON(_: QueryParamsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   }
@@ -101,17 +94,7 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
-    };
-  },
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -146,17 +129,7 @@ export const QueryInfoRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryInfoRequest {
-    return {
-      project: isSet(object.project) ? String(object.project) : ""
-    };
-  },
-  toJSON(message: QueryInfoRequest): unknown {
-    const obj: any = {};
-    message.project !== undefined && (obj.project = message.project);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryInfoRequest>): QueryInfoRequest {
+  fromPartial(object: DeepPartial<QueryInfoRequest>): QueryInfoRequest {
     const message = createBaseQueryInfoRequest();
     message.project = object.project ?? "";
     return message;
@@ -191,17 +164,7 @@ export const QueryInfoResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryInfoResponse {
-    return {
-      project: isSet(object.project) ? Project.fromJSON(object.project) : undefined
-    };
-  },
-  toJSON(message: QueryInfoResponse): unknown {
-    const obj: any = {};
-    message.project !== undefined && (obj.project = message.project ? Project.toJSON(message.project) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryInfoResponse>): QueryInfoResponse {
+  fromPartial(object: DeepPartial<QueryInfoResponse>): QueryInfoResponse {
     const message = createBaseQueryInfoResponse();
     message.project = object.project !== undefined && object.project !== null ? Project.fromPartial(object.project) : undefined;
     return message;
@@ -236,17 +199,7 @@ export const QueryDeveloperRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDeveloperRequest {
-    return {
-      developer: isSet(object.developer) ? String(object.developer) : ""
-    };
-  },
-  toJSON(message: QueryDeveloperRequest): unknown {
-    const obj: any = {};
-    message.developer !== undefined && (obj.developer = message.developer);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryDeveloperRequest>): QueryDeveloperRequest {
+  fromPartial(object: DeepPartial<QueryDeveloperRequest>): QueryDeveloperRequest {
     const message = createBaseQueryDeveloperRequest();
     message.developer = object.developer ?? "";
     return message;
@@ -281,17 +234,7 @@ export const QueryDeveloperResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryDeveloperResponse {
-    return {
-      project: isSet(object.project) ? Project.fromJSON(object.project) : undefined
-    };
-  },
-  toJSON(message: QueryDeveloperResponse): unknown {
-    const obj: any = {};
-    message.project !== undefined && (obj.project = message.project ? Project.toJSON(message.project) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryDeveloperResponse>): QueryDeveloperResponse {
+  fromPartial(object: DeepPartial<QueryDeveloperResponse>): QueryDeveloperResponse {
     const message = createBaseQueryDeveloperResponse();
     message.project = object.project !== undefined && object.project !== null ? Project.fromPartial(object.project) : undefined;
     return message;

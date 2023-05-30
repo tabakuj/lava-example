@@ -3,7 +3,7 @@ import { StakeStorage, StakeStorageSDKType } from "./stake_storage";
 import { EpochDetails, EpochDetailsSDKType } from "./epoch_details";
 import { FixatedParams, FixatedParamsSDKType } from "./fixated_params";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 /** GenesisState defines the epochstorage module's genesis state. */
 export interface GenesisState {
   params?: Params;
@@ -68,31 +68,7 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      stakeStorageList: Array.isArray(object?.stakeStorageList) ? object.stakeStorageList.map((e: any) => StakeStorage.fromJSON(e)) : [],
-      epochDetails: isSet(object.epochDetails) ? EpochDetails.fromJSON(object.epochDetails) : undefined,
-      fixatedParamsList: Array.isArray(object?.fixatedParamsList) ? object.fixatedParamsList.map((e: any) => FixatedParams.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: GenesisState): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    if (message.stakeStorageList) {
-      obj.stakeStorageList = message.stakeStorageList.map(e => e ? StakeStorage.toJSON(e) : undefined);
-    } else {
-      obj.stakeStorageList = [];
-    }
-    message.epochDetails !== undefined && (obj.epochDetails = message.epochDetails ? EpochDetails.toJSON(message.epochDetails) : undefined);
-    if (message.fixatedParamsList) {
-      obj.fixatedParamsList = message.fixatedParamsList.map(e => e ? FixatedParams.toJSON(e) : undefined);
-    } else {
-      obj.fixatedParamsList = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<GenesisState>): GenesisState {
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.stakeStorageList = object.stakeStorageList?.map(e => StakeStorage.fromPartial(e)) || [];

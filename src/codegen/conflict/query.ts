@@ -2,7 +2,7 @@ import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } fr
 import { Params, ParamsSDKType } from "./params";
 import { ConflictVote, ConflictVoteSDKType } from "./conflict_vote";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -63,14 +63,7 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    return {};
-  },
-  toJSON(_: QueryParamsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   }
@@ -104,17 +97,7 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
-    };
-  },
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -149,17 +132,7 @@ export const QueryGetConflictVoteRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetConflictVoteRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetConflictVoteRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetConflictVoteRequest>): QueryGetConflictVoteRequest {
+  fromPartial(object: DeepPartial<QueryGetConflictVoteRequest>): QueryGetConflictVoteRequest {
     const message = createBaseQueryGetConflictVoteRequest();
     message.index = object.index ?? "";
     return message;
@@ -194,17 +167,7 @@ export const QueryGetConflictVoteResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetConflictVoteResponse {
-    return {
-      conflictVote: isSet(object.conflictVote) ? ConflictVote.fromJSON(object.conflictVote) : undefined
-    };
-  },
-  toJSON(message: QueryGetConflictVoteResponse): unknown {
-    const obj: any = {};
-    message.conflictVote !== undefined && (obj.conflictVote = message.conflictVote ? ConflictVote.toJSON(message.conflictVote) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetConflictVoteResponse>): QueryGetConflictVoteResponse {
+  fromPartial(object: DeepPartial<QueryGetConflictVoteResponse>): QueryGetConflictVoteResponse {
     const message = createBaseQueryGetConflictVoteResponse();
     message.conflictVote = object.conflictVote !== undefined && object.conflictVote !== null ? ConflictVote.fromPartial(object.conflictVote) : undefined;
     return message;
@@ -239,17 +202,7 @@ export const QueryAllConflictVoteRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllConflictVoteRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllConflictVoteRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllConflictVoteRequest>): QueryAllConflictVoteRequest {
+  fromPartial(object: DeepPartial<QueryAllConflictVoteRequest>): QueryAllConflictVoteRequest {
     const message = createBaseQueryAllConflictVoteRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -291,23 +244,7 @@ export const QueryAllConflictVoteResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllConflictVoteResponse {
-    return {
-      conflictVote: Array.isArray(object?.conflictVote) ? object.conflictVote.map((e: any) => ConflictVote.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllConflictVoteResponse): unknown {
-    const obj: any = {};
-    if (message.conflictVote) {
-      obj.conflictVote = message.conflictVote.map(e => e ? ConflictVote.toJSON(e) : undefined);
-    } else {
-      obj.conflictVote = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllConflictVoteResponse>): QueryAllConflictVoteResponse {
+  fromPartial(object: DeepPartial<QueryAllConflictVoteResponse>): QueryAllConflictVoteResponse {
     const message = createBaseQueryAllConflictVoteResponse();
     message.conflictVote = object.conflictVote?.map(e => ConflictVote.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;

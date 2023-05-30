@@ -1,6 +1,6 @@
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
 import { Policy, PolicySDKType } from "../projects/project";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface Plan {
   index: string;
@@ -116,33 +116,7 @@ export const Plan = {
     }
     return message;
   },
-  fromJSON(object: any): Plan {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      block: isSet(object.block) ? Long.fromValue(object.block) : Long.UZERO,
-      price: isSet(object.price) ? Coin.fromJSON(object.price) : undefined,
-      allowOveruse: isSet(object.allowOveruse) ? Boolean(object.allowOveruse) : false,
-      overuseRate: isSet(object.overuseRate) ? Long.fromValue(object.overuseRate) : Long.UZERO,
-      description: isSet(object.description) ? String(object.description) : "",
-      type: isSet(object.type) ? String(object.type) : "",
-      annualDiscountPercentage: isSet(object.annualDiscountPercentage) ? Long.fromValue(object.annualDiscountPercentage) : Long.UZERO,
-      planPolicy: isSet(object.planPolicy) ? Policy.fromJSON(object.planPolicy) : undefined
-    };
-  },
-  toJSON(message: Plan): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    message.block !== undefined && (obj.block = (message.block || Long.UZERO).toString());
-    message.price !== undefined && (obj.price = message.price ? Coin.toJSON(message.price) : undefined);
-    message.allowOveruse !== undefined && (obj.allowOveruse = message.allowOveruse);
-    message.overuseRate !== undefined && (obj.overuseRate = (message.overuseRate || Long.UZERO).toString());
-    message.description !== undefined && (obj.description = message.description);
-    message.type !== undefined && (obj.type = message.type);
-    message.annualDiscountPercentage !== undefined && (obj.annualDiscountPercentage = (message.annualDiscountPercentage || Long.UZERO).toString());
-    message.planPolicy !== undefined && (obj.planPolicy = message.planPolicy ? Policy.toJSON(message.planPolicy) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<Plan>): Plan {
+  fromPartial(object: DeepPartial<Plan>): Plan {
     const message = createBasePlan();
     message.index = object.index ?? "";
     message.block = object.block !== undefined && object.block !== null ? Long.fromValue(object.block) : Long.UZERO;

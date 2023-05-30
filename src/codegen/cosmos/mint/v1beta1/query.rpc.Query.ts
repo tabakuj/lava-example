@@ -1,14 +1,7 @@
-import { Rpc } from '../../../helpers';
-import * as _m0 from 'protobufjs/minimal';
-import { QueryClient, createProtobufRpcClient } from '@cosmjs/stargate';
-import {
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryInflationRequest,
-  QueryInflationResponse,
-  QueryAnnualProvisionsRequest,
-  QueryAnnualProvisionsResponse,
-} from './query';
+import { Rpc } from "../../../helpers";
+import * as _m0 from "protobufjs/minimal";
+import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryParamsRequest, QueryParamsResponse, QueryInflationRequest, QueryInflationResponse, QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse } from "./query";
 /** Query provides defines the gRPC querier service. */
 export interface Query {
   /** Params returns the total set of minting parameters. */
@@ -16,9 +9,7 @@ export interface Query {
   /** Inflation returns the current minting inflation value. */
   inflation(request?: QueryInflationRequest): Promise<QueryInflationResponse>;
   /** AnnualProvisions current minting annual provisions value. */
-  annualProvisions(
-    request?: QueryAnnualProvisionsRequest,
-  ): Promise<QueryAnnualProvisionsResponse>;
+  annualProvisions(request?: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -30,40 +21,18 @@ export class QueryClientImpl implements Query {
   }
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'Params',
-      data,
-    );
-    return promise.then((data) =>
-      QueryParamsResponse.decode(new _m0.Reader(data)),
-    );
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Params", data);
+    return promise.then(data => QueryParamsResponse.decode(new _m0.Reader(data)));
   }
-  inflation(
-    request: QueryInflationRequest = {},
-  ): Promise<QueryInflationResponse> {
+  inflation(request: QueryInflationRequest = {}): Promise<QueryInflationResponse> {
     const data = QueryInflationRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'Inflation',
-      data,
-    );
-    return promise.then((data) =>
-      QueryInflationResponse.decode(new _m0.Reader(data)),
-    );
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "Inflation", data);
+    return promise.then(data => QueryInflationResponse.decode(new _m0.Reader(data)));
   }
-  annualProvisions(
-    request: QueryAnnualProvisionsRequest = {},
-  ): Promise<QueryAnnualProvisionsResponse> {
+  annualProvisions(request: QueryAnnualProvisionsRequest = {}): Promise<QueryAnnualProvisionsResponse> {
     const data = QueryAnnualProvisionsRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      'cosmos.mint.v1beta1.Query',
-      'AnnualProvisions',
-      data,
-    );
-    return promise.then((data) =>
-      QueryAnnualProvisionsResponse.decode(new _m0.Reader(data)),
-    );
+    const promise = this.rpc.request("cosmos.mint.v1beta1.Query", "AnnualProvisions", data);
+    return promise.then(data => QueryAnnualProvisionsResponse.decode(new _m0.Reader(data)));
   }
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
@@ -73,15 +42,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
       return queryService.params(request);
     },
-    inflation(
-      request?: QueryInflationRequest,
-    ): Promise<QueryInflationResponse> {
+    inflation(request?: QueryInflationRequest): Promise<QueryInflationResponse> {
       return queryService.inflation(request);
     },
-    annualProvisions(
-      request?: QueryAnnualProvisionsRequest,
-    ): Promise<QueryAnnualProvisionsResponse> {
+    annualProvisions(request?: QueryAnnualProvisionsRequest): Promise<QueryAnnualProvisionsResponse> {
       return queryService.annualProvisions(request);
-    },
+    }
   };
 };

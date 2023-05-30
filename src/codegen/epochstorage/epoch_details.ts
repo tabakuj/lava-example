@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface EpochDetails {
   startBlock: Long;
@@ -62,25 +62,7 @@ export const EpochDetails = {
     }
     return message;
   },
-  fromJSON(object: any): EpochDetails {
-    return {
-      startBlock: isSet(object.startBlock) ? Long.fromValue(object.startBlock) : Long.UZERO,
-      earliestStart: isSet(object.earliestStart) ? Long.fromValue(object.earliestStart) : Long.UZERO,
-      deletedEpochs: Array.isArray(object?.deletedEpochs) ? object.deletedEpochs.map((e: any) => Long.fromValue(e)) : []
-    };
-  },
-  toJSON(message: EpochDetails): unknown {
-    const obj: any = {};
-    message.startBlock !== undefined && (obj.startBlock = (message.startBlock || Long.UZERO).toString());
-    message.earliestStart !== undefined && (obj.earliestStart = (message.earliestStart || Long.UZERO).toString());
-    if (message.deletedEpochs) {
-      obj.deletedEpochs = message.deletedEpochs.map(e => (e || Long.UZERO).toString());
-    } else {
-      obj.deletedEpochs = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<EpochDetails>): EpochDetails {
+  fromPartial(object: DeepPartial<EpochDetails>): EpochDetails {
     const message = createBaseEpochDetails();
     message.startBlock = object.startBlock !== undefined && object.startBlock !== null ? Long.fromValue(object.startBlock) : Long.UZERO;
     message.earliestStart = object.earliestStart !== undefined && object.earliestStart !== null ? Long.fromValue(object.earliestStart) : Long.UZERO;

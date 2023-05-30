@@ -3,7 +3,7 @@ import { UniquePaymentStorageClientProvider, UniquePaymentStorageClientProviderS
 import { ProviderPaymentStorage, ProviderPaymentStorageSDKType } from "./provider_payment_storage";
 import { EpochPayments, EpochPaymentsSDKType } from "./epoch_payments";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 /** GenesisState defines the pairing module's genesis state. */
 export interface GenesisState {
   params?: Params;
@@ -68,35 +68,7 @@ export const GenesisState = {
     }
     return message;
   },
-  fromJSON(object: any): GenesisState {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      uniquePaymentStorageClientProviderList: Array.isArray(object?.uniquePaymentStorageClientProviderList) ? object.uniquePaymentStorageClientProviderList.map((e: any) => UniquePaymentStorageClientProvider.fromJSON(e)) : [],
-      providerPaymentStorageList: Array.isArray(object?.providerPaymentStorageList) ? object.providerPaymentStorageList.map((e: any) => ProviderPaymentStorage.fromJSON(e)) : [],
-      epochPaymentsList: Array.isArray(object?.epochPaymentsList) ? object.epochPaymentsList.map((e: any) => EpochPayments.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: GenesisState): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    if (message.uniquePaymentStorageClientProviderList) {
-      obj.uniquePaymentStorageClientProviderList = message.uniquePaymentStorageClientProviderList.map(e => e ? UniquePaymentStorageClientProvider.toJSON(e) : undefined);
-    } else {
-      obj.uniquePaymentStorageClientProviderList = [];
-    }
-    if (message.providerPaymentStorageList) {
-      obj.providerPaymentStorageList = message.providerPaymentStorageList.map(e => e ? ProviderPaymentStorage.toJSON(e) : undefined);
-    } else {
-      obj.providerPaymentStorageList = [];
-    }
-    if (message.epochPaymentsList) {
-      obj.epochPaymentsList = message.epochPaymentsList.map(e => e ? EpochPayments.toJSON(e) : undefined);
-    } else {
-      obj.epochPaymentsList = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<GenesisState>): GenesisState {
+  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.uniquePaymentStorageClientProviderList = object.uniquePaymentStorageClientProviderList?.map(e => UniquePaymentStorageClientProvider.fromPartial(e)) || [];

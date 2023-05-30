@@ -1,5 +1,5 @@
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface StakeToMaxCUList {
   List: StakeToMaxCU[];
@@ -44,21 +44,7 @@ export const StakeToMaxCUList = {
     }
     return message;
   },
-  fromJSON(object: any): StakeToMaxCUList {
-    return {
-      List: Array.isArray(object?.List) ? object.List.map((e: any) => StakeToMaxCU.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: StakeToMaxCUList): unknown {
-    const obj: any = {};
-    if (message.List) {
-      obj.List = message.List.map(e => e ? StakeToMaxCU.toJSON(e) : undefined);
-    } else {
-      obj.List = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<StakeToMaxCUList>): StakeToMaxCUList {
+  fromPartial(object: DeepPartial<StakeToMaxCUList>): StakeToMaxCUList {
     const message = createBaseStakeToMaxCUList();
     message.List = object.List?.map(e => StakeToMaxCU.fromPartial(e)) || [];
     return message;
@@ -100,19 +86,7 @@ export const StakeToMaxCU = {
     }
     return message;
   },
-  fromJSON(object: any): StakeToMaxCU {
-    return {
-      StakeThreshold: isSet(object.StakeThreshold) ? Coin.fromJSON(object.StakeThreshold) : undefined,
-      MaxComputeUnits: isSet(object.MaxComputeUnits) ? Long.fromValue(object.MaxComputeUnits) : Long.UZERO
-    };
-  },
-  toJSON(message: StakeToMaxCU): unknown {
-    const obj: any = {};
-    message.StakeThreshold !== undefined && (obj.StakeThreshold = message.StakeThreshold ? Coin.toJSON(message.StakeThreshold) : undefined);
-    message.MaxComputeUnits !== undefined && (obj.MaxComputeUnits = (message.MaxComputeUnits || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<StakeToMaxCU>): StakeToMaxCU {
+  fromPartial(object: DeepPartial<StakeToMaxCU>): StakeToMaxCU {
     const message = createBaseStakeToMaxCU();
     message.StakeThreshold = object.StakeThreshold !== undefined && object.StakeThreshold !== null ? Coin.fromPartial(object.StakeThreshold) : undefined;
     message.MaxComputeUnits = object.MaxComputeUnits !== undefined && object.MaxComputeUnits !== null ? Long.fromValue(object.MaxComputeUnits) : Long.UZERO;

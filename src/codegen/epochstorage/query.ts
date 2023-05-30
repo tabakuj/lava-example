@@ -4,7 +4,7 @@ import { StakeStorage, StakeStorageSDKType } from "./stake_storage";
 import { EpochDetails, EpochDetailsSDKType } from "./epoch_details";
 import { FixatedParams, FixatedParamsSDKType } from "./fixated_params";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -99,14 +99,7 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    return {};
-  },
-  toJSON(_: QueryParamsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   }
@@ -140,17 +133,7 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
-    };
-  },
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -185,17 +168,7 @@ export const QueryGetStakeStorageRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetStakeStorageRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetStakeStorageRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetStakeStorageRequest>): QueryGetStakeStorageRequest {
+  fromPartial(object: DeepPartial<QueryGetStakeStorageRequest>): QueryGetStakeStorageRequest {
     const message = createBaseQueryGetStakeStorageRequest();
     message.index = object.index ?? "";
     return message;
@@ -230,17 +203,7 @@ export const QueryGetStakeStorageResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetStakeStorageResponse {
-    return {
-      stakeStorage: isSet(object.stakeStorage) ? StakeStorage.fromJSON(object.stakeStorage) : undefined
-    };
-  },
-  toJSON(message: QueryGetStakeStorageResponse): unknown {
-    const obj: any = {};
-    message.stakeStorage !== undefined && (obj.stakeStorage = message.stakeStorage ? StakeStorage.toJSON(message.stakeStorage) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetStakeStorageResponse>): QueryGetStakeStorageResponse {
+  fromPartial(object: DeepPartial<QueryGetStakeStorageResponse>): QueryGetStakeStorageResponse {
     const message = createBaseQueryGetStakeStorageResponse();
     message.stakeStorage = object.stakeStorage !== undefined && object.stakeStorage !== null ? StakeStorage.fromPartial(object.stakeStorage) : undefined;
     return message;
@@ -275,17 +238,7 @@ export const QueryAllStakeStorageRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllStakeStorageRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllStakeStorageRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllStakeStorageRequest>): QueryAllStakeStorageRequest {
+  fromPartial(object: DeepPartial<QueryAllStakeStorageRequest>): QueryAllStakeStorageRequest {
     const message = createBaseQueryAllStakeStorageRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -327,23 +280,7 @@ export const QueryAllStakeStorageResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllStakeStorageResponse {
-    return {
-      stakeStorage: Array.isArray(object?.stakeStorage) ? object.stakeStorage.map((e: any) => StakeStorage.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllStakeStorageResponse): unknown {
-    const obj: any = {};
-    if (message.stakeStorage) {
-      obj.stakeStorage = message.stakeStorage.map(e => e ? StakeStorage.toJSON(e) : undefined);
-    } else {
-      obj.stakeStorage = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllStakeStorageResponse>): QueryAllStakeStorageResponse {
+  fromPartial(object: DeepPartial<QueryAllStakeStorageResponse>): QueryAllStakeStorageResponse {
     const message = createBaseQueryAllStakeStorageResponse();
     message.stakeStorage = object.stakeStorage?.map(e => StakeStorage.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -371,14 +308,7 @@ export const QueryGetEpochDetailsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryGetEpochDetailsRequest {
-    return {};
-  },
-  toJSON(_: QueryGetEpochDetailsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryGetEpochDetailsRequest>): QueryGetEpochDetailsRequest {
+  fromPartial(_: DeepPartial<QueryGetEpochDetailsRequest>): QueryGetEpochDetailsRequest {
     const message = createBaseQueryGetEpochDetailsRequest();
     return message;
   }
@@ -412,17 +342,7 @@ export const QueryGetEpochDetailsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetEpochDetailsResponse {
-    return {
-      EpochDetails: isSet(object.EpochDetails) ? EpochDetails.fromJSON(object.EpochDetails) : undefined
-    };
-  },
-  toJSON(message: QueryGetEpochDetailsResponse): unknown {
-    const obj: any = {};
-    message.EpochDetails !== undefined && (obj.EpochDetails = message.EpochDetails ? EpochDetails.toJSON(message.EpochDetails) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetEpochDetailsResponse>): QueryGetEpochDetailsResponse {
+  fromPartial(object: DeepPartial<QueryGetEpochDetailsResponse>): QueryGetEpochDetailsResponse {
     const message = createBaseQueryGetEpochDetailsResponse();
     message.EpochDetails = object.EpochDetails !== undefined && object.EpochDetails !== null ? EpochDetails.fromPartial(object.EpochDetails) : undefined;
     return message;
@@ -457,17 +377,7 @@ export const QueryGetFixatedParamsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetFixatedParamsRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetFixatedParamsRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetFixatedParamsRequest>): QueryGetFixatedParamsRequest {
+  fromPartial(object: DeepPartial<QueryGetFixatedParamsRequest>): QueryGetFixatedParamsRequest {
     const message = createBaseQueryGetFixatedParamsRequest();
     message.index = object.index ?? "";
     return message;
@@ -502,17 +412,7 @@ export const QueryGetFixatedParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetFixatedParamsResponse {
-    return {
-      fixatedParams: isSet(object.fixatedParams) ? FixatedParams.fromJSON(object.fixatedParams) : undefined
-    };
-  },
-  toJSON(message: QueryGetFixatedParamsResponse): unknown {
-    const obj: any = {};
-    message.fixatedParams !== undefined && (obj.fixatedParams = message.fixatedParams ? FixatedParams.toJSON(message.fixatedParams) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetFixatedParamsResponse>): QueryGetFixatedParamsResponse {
+  fromPartial(object: DeepPartial<QueryGetFixatedParamsResponse>): QueryGetFixatedParamsResponse {
     const message = createBaseQueryGetFixatedParamsResponse();
     message.fixatedParams = object.fixatedParams !== undefined && object.fixatedParams !== null ? FixatedParams.fromPartial(object.fixatedParams) : undefined;
     return message;
@@ -547,17 +447,7 @@ export const QueryAllFixatedParamsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllFixatedParamsRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllFixatedParamsRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllFixatedParamsRequest>): QueryAllFixatedParamsRequest {
+  fromPartial(object: DeepPartial<QueryAllFixatedParamsRequest>): QueryAllFixatedParamsRequest {
     const message = createBaseQueryAllFixatedParamsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -599,23 +489,7 @@ export const QueryAllFixatedParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllFixatedParamsResponse {
-    return {
-      fixatedParams: Array.isArray(object?.fixatedParams) ? object.fixatedParams.map((e: any) => FixatedParams.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllFixatedParamsResponse): unknown {
-    const obj: any = {};
-    if (message.fixatedParams) {
-      obj.fixatedParams = message.fixatedParams.map(e => e ? FixatedParams.toJSON(e) : undefined);
-    } else {
-      obj.fixatedParams = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllFixatedParamsResponse>): QueryAllFixatedParamsResponse {
+  fromPartial(object: DeepPartial<QueryAllFixatedParamsResponse>): QueryAllFixatedParamsResponse {
     const message = createBaseQueryAllFixatedParamsResponse();
     message.fixatedParams = object.fixatedParams?.map(e => FixatedParams.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;

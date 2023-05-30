@@ -6,9 +6,9 @@ export const createRPCMsgClient = async ({
 }) => ({
   lavanet: {
     lava: {
-      conflict: new (await import("../conflict/tx.rpc.msg")).MsgClientImpl(rpc),
-      pairing: new (await import("../pairing/tx.rpc.msg")).MsgClientImpl(rpc),
-      projects: new (await import("../projects/tx.rpc.msg")).MsgClientImpl(rpc),
+      conflict: new (await import("../proto/conflict/tx.rpc.msg")).MsgClientImpl(rpc),
+      pairing: new (await import("../proto/pairing/tx.rpc.msg")).MsgClientImpl(rpc),
+      projects: new (await import("../proto/projects/tx.rpc.msg")).MsgClientImpl(rpc),
       subscription: new (await import("../subscription/tx.rpc.msg")).MsgClientImpl(rpc)
     }
   },

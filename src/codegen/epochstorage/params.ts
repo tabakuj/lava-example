@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** Params defines the parameters for the module. */
 export interface Params {
@@ -73,25 +73,7 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    return {
-      unstakeHoldBlocks: isSet(object.unstakeHoldBlocks) ? Long.fromValue(object.unstakeHoldBlocks) : Long.UZERO,
-      epochBlocks: isSet(object.epochBlocks) ? Long.fromValue(object.epochBlocks) : Long.UZERO,
-      epochsToSave: isSet(object.epochsToSave) ? Long.fromValue(object.epochsToSave) : Long.UZERO,
-      latestParamChange: isSet(object.latestParamChange) ? Long.fromValue(object.latestParamChange) : Long.UZERO,
-      unstakeHoldBlocksStatic: isSet(object.unstakeHoldBlocksStatic) ? Long.fromValue(object.unstakeHoldBlocksStatic) : Long.UZERO
-    };
-  },
-  toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.unstakeHoldBlocks !== undefined && (obj.unstakeHoldBlocks = (message.unstakeHoldBlocks || Long.UZERO).toString());
-    message.epochBlocks !== undefined && (obj.epochBlocks = (message.epochBlocks || Long.UZERO).toString());
-    message.epochsToSave !== undefined && (obj.epochsToSave = (message.epochsToSave || Long.UZERO).toString());
-    message.latestParamChange !== undefined && (obj.latestParamChange = (message.latestParamChange || Long.UZERO).toString());
-    message.unstakeHoldBlocksStatic !== undefined && (obj.unstakeHoldBlocksStatic = (message.unstakeHoldBlocksStatic || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Params>): Params {
+  fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
     message.unstakeHoldBlocks = object.unstakeHoldBlocks !== undefined && object.unstakeHoldBlocks !== null ? Long.fromValue(object.unstakeHoldBlocks) : Long.UZERO;
     message.epochBlocks = object.epochBlocks !== undefined && object.epochBlocks !== null ? Long.fromValue(object.epochBlocks) : Long.UZERO;

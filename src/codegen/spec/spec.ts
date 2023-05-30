@@ -1,6 +1,6 @@
 import { ServiceApi, ServiceApiSDKType } from "./service_api";
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export enum Spec_ProvidersTypes {
   dynamic = 0,
@@ -194,53 +194,7 @@ export const Spec = {
     }
     return message;
   },
-  fromJSON(object: any): Spec {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      name: isSet(object.name) ? String(object.name) : "",
-      imports: Array.isArray(object?.imports) ? object.imports.map((e: any) => String(e)) : [],
-      apis: Array.isArray(object?.apis) ? object.apis.map((e: any) => ServiceApi.fromJSON(e)) : [],
-      enabled: isSet(object.enabled) ? Boolean(object.enabled) : false,
-      reliabilityThreshold: isSet(object.reliabilityThreshold) ? Number(object.reliabilityThreshold) : 0,
-      dataReliabilityEnabled: isSet(object.dataReliabilityEnabled) ? Boolean(object.dataReliabilityEnabled) : false,
-      blockDistanceForFinalizedData: isSet(object.blockDistanceForFinalizedData) ? Number(object.blockDistanceForFinalizedData) : 0,
-      blocksInFinalizationProof: isSet(object.blocksInFinalizationProof) ? Number(object.blocksInFinalizationProof) : 0,
-      averageBlockTime: isSet(object.averageBlockTime) ? Long.fromValue(object.averageBlockTime) : Long.ZERO,
-      allowedBlockLagForQosSync: isSet(object.allowedBlockLagForQosSync) ? Long.fromValue(object.allowedBlockLagForQosSync) : Long.ZERO,
-      blockLastUpdated: isSet(object.blockLastUpdated) ? Long.fromValue(object.blockLastUpdated) : Long.UZERO,
-      minStakeProvider: isSet(object.minStakeProvider) ? Coin.fromJSON(object.minStakeProvider) : undefined,
-      minStakeClient: isSet(object.minStakeClient) ? Coin.fromJSON(object.minStakeClient) : undefined,
-      providersTypes: isSet(object.providersTypes) ? spec_ProvidersTypesFromJSON(object.providersTypes) : 0
-    };
-  },
-  toJSON(message: Spec): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    message.name !== undefined && (obj.name = message.name);
-    if (message.imports) {
-      obj.imports = message.imports.map(e => e);
-    } else {
-      obj.imports = [];
-    }
-    if (message.apis) {
-      obj.apis = message.apis.map(e => e ? ServiceApi.toJSON(e) : undefined);
-    } else {
-      obj.apis = [];
-    }
-    message.enabled !== undefined && (obj.enabled = message.enabled);
-    message.reliabilityThreshold !== undefined && (obj.reliabilityThreshold = Math.round(message.reliabilityThreshold));
-    message.dataReliabilityEnabled !== undefined && (obj.dataReliabilityEnabled = message.dataReliabilityEnabled);
-    message.blockDistanceForFinalizedData !== undefined && (obj.blockDistanceForFinalizedData = Math.round(message.blockDistanceForFinalizedData));
-    message.blocksInFinalizationProof !== undefined && (obj.blocksInFinalizationProof = Math.round(message.blocksInFinalizationProof));
-    message.averageBlockTime !== undefined && (obj.averageBlockTime = (message.averageBlockTime || Long.ZERO).toString());
-    message.allowedBlockLagForQosSync !== undefined && (obj.allowedBlockLagForQosSync = (message.allowedBlockLagForQosSync || Long.ZERO).toString());
-    message.blockLastUpdated !== undefined && (obj.blockLastUpdated = (message.blockLastUpdated || Long.UZERO).toString());
-    message.minStakeProvider !== undefined && (obj.minStakeProvider = message.minStakeProvider ? Coin.toJSON(message.minStakeProvider) : undefined);
-    message.minStakeClient !== undefined && (obj.minStakeClient = message.minStakeClient ? Coin.toJSON(message.minStakeClient) : undefined);
-    message.providersTypes !== undefined && (obj.providersTypes = spec_ProvidersTypesToJSON(message.providersTypes));
-    return obj;
-  },
-  fromPartial(object: Partial<Spec>): Spec {
+  fromPartial(object: DeepPartial<Spec>): Spec {
     const message = createBaseSpec();
     message.index = object.index ?? "";
     message.name = object.name ?? "";

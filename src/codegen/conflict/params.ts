@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** Params defines the parameters for the module. */
 export interface Params {
@@ -74,23 +74,7 @@ export const Params = {
     }
     return message;
   },
-  fromJSON(object: any): Params {
-    return {
-      majorityPercent: isSet(object.majorityPercent) ? String(object.majorityPercent) : "",
-      voteStartSpan: isSet(object.voteStartSpan) ? Long.fromValue(object.voteStartSpan) : Long.UZERO,
-      votePeriod: isSet(object.votePeriod) ? Long.fromValue(object.votePeriod) : Long.UZERO,
-      Rewards: isSet(object.Rewards) ? Rewards.fromJSON(object.Rewards) : undefined
-    };
-  },
-  toJSON(message: Params): unknown {
-    const obj: any = {};
-    message.majorityPercent !== undefined && (obj.majorityPercent = message.majorityPercent);
-    message.voteStartSpan !== undefined && (obj.voteStartSpan = (message.voteStartSpan || Long.UZERO).toString());
-    message.votePeriod !== undefined && (obj.votePeriod = (message.votePeriod || Long.UZERO).toString());
-    message.Rewards !== undefined && (obj.Rewards = message.Rewards ? Rewards.toJSON(message.Rewards) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<Params>): Params {
+  fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
     message.majorityPercent = object.majorityPercent ?? "";
     message.voteStartSpan = object.voteStartSpan !== undefined && object.voteStartSpan !== null ? Long.fromValue(object.voteStartSpan) : Long.UZERO;
@@ -142,21 +126,7 @@ export const Rewards = {
     }
     return message;
   },
-  fromJSON(object: any): Rewards {
-    return {
-      winnerRewardPercent: isSet(object.winnerRewardPercent) ? String(object.winnerRewardPercent) : "",
-      clientRewardPercent: isSet(object.clientRewardPercent) ? String(object.clientRewardPercent) : "",
-      votersRewardPercent: isSet(object.votersRewardPercent) ? String(object.votersRewardPercent) : ""
-    };
-  },
-  toJSON(message: Rewards): unknown {
-    const obj: any = {};
-    message.winnerRewardPercent !== undefined && (obj.winnerRewardPercent = message.winnerRewardPercent);
-    message.clientRewardPercent !== undefined && (obj.clientRewardPercent = message.clientRewardPercent);
-    message.votersRewardPercent !== undefined && (obj.votersRewardPercent = message.votersRewardPercent);
-    return obj;
-  },
-  fromPartial(object: Partial<Rewards>): Rewards {
+  fromPartial(object: DeepPartial<Rewards>): Rewards {
     const message = createBaseRewards();
     message.winnerRewardPercent = object.winnerRewardPercent ?? "";
     message.clientRewardPercent = object.clientRewardPercent ?? "";

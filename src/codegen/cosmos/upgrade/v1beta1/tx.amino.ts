@@ -1,7 +1,6 @@
 import { AminoMsg } from "@cosmjs/amino";
 import { Long } from "../../../helpers";
 import { MsgSoftwareUpgrade, MsgCancelUpgrade } from "./tx";
-import {Timestamp} from "../../../google/protobuf/timestamp";
 export interface MsgSoftwareUpgradeAminoType extends AminoMsg {
   type: "cosmos-sdk/MsgSoftwareUpgrade";
   value: {
@@ -33,7 +32,7 @@ export const AminoConverter = {
     toAmino: ({
       authority,
       plan
-    }: MsgSoftwareUpgrade): { authority: string; plan: { name: string; upgraded_client_state: { value: Uint8Array; type_url: string }; time: Timestamp; height: string; info: string } } => {
+    }: MsgSoftwareUpgrade): MsgSoftwareUpgradeAminoType["value"] => {
       return {
         authority,
         plan: {
@@ -51,7 +50,7 @@ export const AminoConverter = {
     fromAmino: ({
       authority,
       plan
-    }: MsgSoftwareUpgradeAminoType["value"]): { authority: string; plan: { name: string; time: { seconds: string; nanos: number }; height: Long.Long; info: string; upgradedClientState: { typeUrl: string; value: Uint8Array } } } => {
+    }: MsgSoftwareUpgradeAminoType["value"]): MsgSoftwareUpgrade => {
       return {
         authority,
         plan: {

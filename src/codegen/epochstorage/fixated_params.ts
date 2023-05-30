@@ -1,4 +1,4 @@
-import { Long, isSet, bytesFromBase64, base64FromBytes } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface FixatedParams {
   index: string;
@@ -53,21 +53,7 @@ export const FixatedParams = {
     }
     return message;
   },
-  fromJSON(object: any): FixatedParams {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      parameter: isSet(object.parameter) ? bytesFromBase64(object.parameter) : new Uint8Array(),
-      fixationBlock: isSet(object.fixationBlock) ? Long.fromValue(object.fixationBlock) : Long.UZERO
-    };
-  },
-  toJSON(message: FixatedParams): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    message.parameter !== undefined && (obj.parameter = base64FromBytes(message.parameter !== undefined ? message.parameter : new Uint8Array()));
-    message.fixationBlock !== undefined && (obj.fixationBlock = (message.fixationBlock || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<FixatedParams>): FixatedParams {
+  fromPartial(object: DeepPartial<FixatedParams>): FixatedParams {
     const message = createBaseFixatedParams();
     message.index = object.index ?? "";
     message.parameter = object.parameter ?? new Uint8Array();

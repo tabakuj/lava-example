@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export enum PARSER_FUNC {
   EMPTY = 0,
@@ -213,35 +213,7 @@ export const ServiceApi = {
     }
     return message;
   },
-  fromJSON(object: any): ServiceApi {
-    return {
-      name: isSet(object.name) ? String(object.name) : "",
-      blockParsing: isSet(object.blockParsing) ? BlockParser.fromJSON(object.blockParsing) : undefined,
-      computeUnits: isSet(object.computeUnits) ? Long.fromValue(object.computeUnits) : Long.UZERO,
-      enabled: isSet(object.enabled) ? Boolean(object.enabled) : false,
-      apiInterfaces: Array.isArray(object?.apiInterfaces) ? object.apiInterfaces.map((e: any) => ApiInterface.fromJSON(e)) : [],
-      reserved: isSet(object.reserved) ? SpecCategory.fromJSON(object.reserved) : undefined,
-      parsing: isSet(object.parsing) ? Parsing.fromJSON(object.parsing) : undefined,
-      internalPath: isSet(object.internalPath) ? String(object.internalPath) : ""
-    };
-  },
-  toJSON(message: ServiceApi): unknown {
-    const obj: any = {};
-    message.name !== undefined && (obj.name = message.name);
-    message.blockParsing !== undefined && (obj.blockParsing = message.blockParsing ? BlockParser.toJSON(message.blockParsing) : undefined);
-    message.computeUnits !== undefined && (obj.computeUnits = (message.computeUnits || Long.UZERO).toString());
-    message.enabled !== undefined && (obj.enabled = message.enabled);
-    if (message.apiInterfaces) {
-      obj.apiInterfaces = message.apiInterfaces.map(e => e ? ApiInterface.toJSON(e) : undefined);
-    } else {
-      obj.apiInterfaces = [];
-    }
-    message.reserved !== undefined && (obj.reserved = message.reserved ? SpecCategory.toJSON(message.reserved) : undefined);
-    message.parsing !== undefined && (obj.parsing = message.parsing ? Parsing.toJSON(message.parsing) : undefined);
-    message.internalPath !== undefined && (obj.internalPath = message.internalPath);
-    return obj;
-  },
-  fromPartial(object: Partial<ServiceApi>): ServiceApi {
+  fromPartial(object: DeepPartial<ServiceApi>): ServiceApi {
     const message = createBaseServiceApi();
     message.name = object.name ?? "";
     message.blockParsing = object.blockParsing !== undefined && object.blockParsing !== null ? BlockParser.fromPartial(object.blockParsing) : undefined;
@@ -297,21 +269,7 @@ export const Parsing = {
     }
     return message;
   },
-  fromJSON(object: any): Parsing {
-    return {
-      functionTag: isSet(object.functionTag) ? String(object.functionTag) : "",
-      functionTemplate: isSet(object.functionTemplate) ? String(object.functionTemplate) : "",
-      resultParsing: isSet(object.resultParsing) ? BlockParser.fromJSON(object.resultParsing) : undefined
-    };
-  },
-  toJSON(message: Parsing): unknown {
-    const obj: any = {};
-    message.functionTag !== undefined && (obj.functionTag = message.functionTag);
-    message.functionTemplate !== undefined && (obj.functionTemplate = message.functionTemplate);
-    message.resultParsing !== undefined && (obj.resultParsing = message.resultParsing ? BlockParser.toJSON(message.resultParsing) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<Parsing>): Parsing {
+  fromPartial(object: DeepPartial<Parsing>): Parsing {
     const message = createBaseParsing();
     message.functionTag = object.functionTag ?? "";
     message.functionTemplate = object.functionTemplate ?? "";
@@ -376,25 +334,7 @@ export const ApiInterface = {
     }
     return message;
   },
-  fromJSON(object: any): ApiInterface {
-    return {
-      interface: isSet(object.interface) ? String(object.interface) : "",
-      type: isSet(object.type) ? String(object.type) : "",
-      extraComputeUnits: isSet(object.extraComputeUnits) ? Long.fromValue(object.extraComputeUnits) : Long.UZERO,
-      category: isSet(object.category) ? SpecCategory.fromJSON(object.category) : undefined,
-      overwriteBlockParsing: isSet(object.overwriteBlockParsing) ? BlockParser.fromJSON(object.overwriteBlockParsing) : undefined
-    };
-  },
-  toJSON(message: ApiInterface): unknown {
-    const obj: any = {};
-    message.interface !== undefined && (obj.interface = message.interface);
-    message.type !== undefined && (obj.type = message.type);
-    message.extraComputeUnits !== undefined && (obj.extraComputeUnits = (message.extraComputeUnits || Long.UZERO).toString());
-    message.category !== undefined && (obj.category = message.category ? SpecCategory.toJSON(message.category) : undefined);
-    message.overwriteBlockParsing !== undefined && (obj.overwriteBlockParsing = message.overwriteBlockParsing ? BlockParser.toJSON(message.overwriteBlockParsing) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<ApiInterface>): ApiInterface {
+  fromPartial(object: DeepPartial<ApiInterface>): ApiInterface {
     const message = createBaseApiInterface();
     message.interface = object.interface ?? "";
     message.type = object.type ?? "";
@@ -454,27 +394,7 @@ export const BlockParser = {
     }
     return message;
   },
-  fromJSON(object: any): BlockParser {
-    return {
-      parserArg: Array.isArray(object?.parserArg) ? object.parserArg.map((e: any) => String(e)) : [],
-      parserFunc: isSet(object.parserFunc) ? pARSER_FUNCFromJSON(object.parserFunc) : 0,
-      defaultValue: isSet(object.defaultValue) ? String(object.defaultValue) : "",
-      encoding: isSet(object.encoding) ? String(object.encoding) : ""
-    };
-  },
-  toJSON(message: BlockParser): unknown {
-    const obj: any = {};
-    if (message.parserArg) {
-      obj.parserArg = message.parserArg.map(e => e);
-    } else {
-      obj.parserArg = [];
-    }
-    message.parserFunc !== undefined && (obj.parserFunc = pARSER_FUNCToJSON(message.parserFunc));
-    message.defaultValue !== undefined && (obj.defaultValue = message.defaultValue);
-    message.encoding !== undefined && (obj.encoding = message.encoding);
-    return obj;
-  },
-  fromPartial(object: Partial<BlockParser>): BlockParser {
+  fromPartial(object: DeepPartial<BlockParser>): BlockParser {
     const message = createBaseBlockParser();
     message.parserArg = object.parserArg?.map(e => e) || [];
     message.parserFunc = object.parserFunc ?? 0;
@@ -540,25 +460,7 @@ export const SpecCategory = {
     }
     return message;
   },
-  fromJSON(object: any): SpecCategory {
-    return {
-      deterministic: isSet(object.deterministic) ? Boolean(object.deterministic) : false,
-      local: isSet(object.local) ? Boolean(object.local) : false,
-      subscription: isSet(object.subscription) ? Boolean(object.subscription) : false,
-      stateful: isSet(object.stateful) ? Number(object.stateful) : 0,
-      hangingApi: isSet(object.hangingApi) ? Boolean(object.hangingApi) : false
-    };
-  },
-  toJSON(message: SpecCategory): unknown {
-    const obj: any = {};
-    message.deterministic !== undefined && (obj.deterministic = message.deterministic);
-    message.local !== undefined && (obj.local = message.local);
-    message.subscription !== undefined && (obj.subscription = message.subscription);
-    message.stateful !== undefined && (obj.stateful = Math.round(message.stateful));
-    message.hangingApi !== undefined && (obj.hangingApi = message.hangingApi);
-    return obj;
-  },
-  fromPartial(object: Partial<SpecCategory>): SpecCategory {
+  fromPartial(object: DeepPartial<SpecCategory>): SpecCategory {
     const message = createBaseSpecCategory();
     message.deterministic = object.deterministic ?? false;
     message.local = object.local ?? false;

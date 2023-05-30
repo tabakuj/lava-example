@@ -1,5 +1,5 @@
 import { RelayRequest, RelayRequestSDKType, RelayReply, RelayReplySDKType } from "./relay";
-import { Long, isSet, bytesFromBase64, base64FromBytes } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface CacheUsage {
   CacheHits: Long;
@@ -80,19 +80,7 @@ export const CacheUsage = {
     }
     return message;
   },
-  fromJSON(object: any): CacheUsage {
-    return {
-      CacheHits: isSet(object.CacheHits) ? Long.fromValue(object.CacheHits) : Long.UZERO,
-      CacheMisses: isSet(object.CacheMisses) ? Long.fromValue(object.CacheMisses) : Long.UZERO
-    };
-  },
-  toJSON(message: CacheUsage): unknown {
-    const obj: any = {};
-    message.CacheHits !== undefined && (obj.CacheHits = (message.CacheHits || Long.UZERO).toString());
-    message.CacheMisses !== undefined && (obj.CacheMisses = (message.CacheMisses || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<CacheUsage>): CacheUsage {
+  fromPartial(object: DeepPartial<CacheUsage>): CacheUsage {
     const message = createBaseCacheUsage();
     message.CacheHits = object.CacheHits !== undefined && object.CacheHits !== null ? Long.fromValue(object.CacheHits) : Long.UZERO;
     message.CacheMisses = object.CacheMisses !== undefined && object.CacheMisses !== null ? Long.fromValue(object.CacheMisses) : Long.UZERO;
@@ -156,25 +144,7 @@ export const RelayCacheGet = {
     }
     return message;
   },
-  fromJSON(object: any): RelayCacheGet {
-    return {
-      request: isSet(object.request) ? RelayRequest.fromJSON(object.request) : undefined,
-      apiInterface: isSet(object.apiInterface) ? String(object.apiInterface) : "",
-      blockHash: isSet(object.blockHash) ? bytesFromBase64(object.blockHash) : new Uint8Array(),
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      finalized: isSet(object.finalized) ? Boolean(object.finalized) : false
-    };
-  },
-  toJSON(message: RelayCacheGet): unknown {
-    const obj: any = {};
-    message.request !== undefined && (obj.request = message.request ? RelayRequest.toJSON(message.request) : undefined);
-    message.apiInterface !== undefined && (obj.apiInterface = message.apiInterface);
-    message.blockHash !== undefined && (obj.blockHash = base64FromBytes(message.blockHash !== undefined ? message.blockHash : new Uint8Array()));
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.finalized !== undefined && (obj.finalized = message.finalized);
-    return obj;
-  },
-  fromPartial(object: Partial<RelayCacheGet>): RelayCacheGet {
+  fromPartial(object: DeepPartial<RelayCacheGet>): RelayCacheGet {
     const message = createBaseRelayCacheGet();
     message.request = object.request !== undefined && object.request !== null ? RelayRequest.fromPartial(object.request) : undefined;
     message.apiInterface = object.apiInterface ?? "";
@@ -255,29 +225,7 @@ export const RelayCacheSet = {
     }
     return message;
   },
-  fromJSON(object: any): RelayCacheSet {
-    return {
-      request: isSet(object.request) ? RelayRequest.fromJSON(object.request) : undefined,
-      apiInterface: isSet(object.apiInterface) ? String(object.apiInterface) : "",
-      blockHash: isSet(object.blockHash) ? bytesFromBase64(object.blockHash) : new Uint8Array(),
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      bucketID: isSet(object.bucketID) ? String(object.bucketID) : "",
-      response: isSet(object.response) ? RelayReply.fromJSON(object.response) : undefined,
-      finalized: isSet(object.finalized) ? Boolean(object.finalized) : false
-    };
-  },
-  toJSON(message: RelayCacheSet): unknown {
-    const obj: any = {};
-    message.request !== undefined && (obj.request = message.request ? RelayRequest.toJSON(message.request) : undefined);
-    message.apiInterface !== undefined && (obj.apiInterface = message.apiInterface);
-    message.blockHash !== undefined && (obj.blockHash = base64FromBytes(message.blockHash !== undefined ? message.blockHash : new Uint8Array()));
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.bucketID !== undefined && (obj.bucketID = message.bucketID);
-    message.response !== undefined && (obj.response = message.response ? RelayReply.toJSON(message.response) : undefined);
-    message.finalized !== undefined && (obj.finalized = message.finalized);
-    return obj;
-  },
-  fromPartial(object: Partial<RelayCacheSet>): RelayCacheSet {
+  fromPartial(object: DeepPartial<RelayCacheSet>): RelayCacheSet {
     const message = createBaseRelayCacheSet();
     message.request = object.request !== undefined && object.request !== null ? RelayRequest.fromPartial(object.request) : undefined;
     message.apiInterface = object.apiInterface ?? "";

@@ -1,7 +1,7 @@
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
 import { Endpoint, EndpointSDKType } from "../epochstorage/endpoint";
 import { RelaySession, RelaySessionSDKType } from "./relay";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface MsgStakeProvider {
   creator: string;
@@ -153,31 +153,7 @@ export const MsgStakeProvider = {
     }
     return message;
   },
-  fromJSON(object: any): MsgStakeProvider {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      amount: isSet(object.amount) ? Coin.fromJSON(object.amount) : undefined,
-      endpoints: Array.isArray(object?.endpoints) ? object.endpoints.map((e: any) => Endpoint.fromJSON(e)) : [],
-      geolocation: isSet(object.geolocation) ? Long.fromValue(object.geolocation) : Long.UZERO,
-      moniker: isSet(object.moniker) ? String(object.moniker) : ""
-    };
-  },
-  toJSON(message: MsgStakeProvider): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.amount !== undefined && (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
-    if (message.endpoints) {
-      obj.endpoints = message.endpoints.map(e => e ? Endpoint.toJSON(e) : undefined);
-    } else {
-      obj.endpoints = [];
-    }
-    message.geolocation !== undefined && (obj.geolocation = (message.geolocation || Long.UZERO).toString());
-    message.moniker !== undefined && (obj.moniker = message.moniker);
-    return obj;
-  },
-  fromPartial(object: Partial<MsgStakeProvider>): MsgStakeProvider {
+  fromPartial(object: DeepPartial<MsgStakeProvider>): MsgStakeProvider {
     const message = createBaseMsgStakeProvider();
     message.creator = object.creator ?? "";
     message.chainID = object.chainID ?? "";
@@ -209,14 +185,7 @@ export const MsgStakeProviderResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgStakeProviderResponse {
-    return {};
-  },
-  toJSON(_: MsgStakeProviderResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgStakeProviderResponse>): MsgStakeProviderResponse {
+  fromPartial(_: DeepPartial<MsgStakeProviderResponse>): MsgStakeProviderResponse {
     const message = createBaseMsgStakeProviderResponse();
     return message;
   }
@@ -271,23 +240,7 @@ export const MsgStakeClient = {
     }
     return message;
   },
-  fromJSON(object: any): MsgStakeClient {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      amount: isSet(object.amount) ? Coin.fromJSON(object.amount) : undefined,
-      geolocation: isSet(object.geolocation) ? Long.fromValue(object.geolocation) : Long.UZERO
-    };
-  },
-  toJSON(message: MsgStakeClient): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.amount !== undefined && (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
-    message.geolocation !== undefined && (obj.geolocation = (message.geolocation || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<MsgStakeClient>): MsgStakeClient {
+  fromPartial(object: DeepPartial<MsgStakeClient>): MsgStakeClient {
     const message = createBaseMsgStakeClient();
     message.creator = object.creator ?? "";
     message.chainID = object.chainID ?? "";
@@ -317,14 +270,7 @@ export const MsgStakeClientResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgStakeClientResponse {
-    return {};
-  },
-  toJSON(_: MsgStakeClientResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgStakeClientResponse>): MsgStakeClientResponse {
+  fromPartial(_: DeepPartial<MsgStakeClientResponse>): MsgStakeClientResponse {
     const message = createBaseMsgStakeClientResponse();
     return message;
   }
@@ -365,19 +311,7 @@ export const MsgUnstakeProvider = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUnstakeProvider {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainID: isSet(object.chainID) ? String(object.chainID) : ""
-    };
-  },
-  toJSON(message: MsgUnstakeProvider): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    return obj;
-  },
-  fromPartial(object: Partial<MsgUnstakeProvider>): MsgUnstakeProvider {
+  fromPartial(object: DeepPartial<MsgUnstakeProvider>): MsgUnstakeProvider {
     const message = createBaseMsgUnstakeProvider();
     message.creator = object.creator ?? "";
     message.chainID = object.chainID ?? "";
@@ -405,14 +339,7 @@ export const MsgUnstakeProviderResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUnstakeProviderResponse {
-    return {};
-  },
-  toJSON(_: MsgUnstakeProviderResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgUnstakeProviderResponse>): MsgUnstakeProviderResponse {
+  fromPartial(_: DeepPartial<MsgUnstakeProviderResponse>): MsgUnstakeProviderResponse {
     const message = createBaseMsgUnstakeProviderResponse();
     return message;
   }
@@ -453,19 +380,7 @@ export const MsgUnstakeClient = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUnstakeClient {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainID: isSet(object.chainID) ? String(object.chainID) : ""
-    };
-  },
-  toJSON(message: MsgUnstakeClient): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    return obj;
-  },
-  fromPartial(object: Partial<MsgUnstakeClient>): MsgUnstakeClient {
+  fromPartial(object: DeepPartial<MsgUnstakeClient>): MsgUnstakeClient {
     const message = createBaseMsgUnstakeClient();
     message.creator = object.creator ?? "";
     message.chainID = object.chainID ?? "";
@@ -493,14 +408,7 @@ export const MsgUnstakeClientResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUnstakeClientResponse {
-    return {};
-  },
-  toJSON(_: MsgUnstakeClientResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgUnstakeClientResponse>): MsgUnstakeClientResponse {
+  fromPartial(_: DeepPartial<MsgUnstakeClientResponse>): MsgUnstakeClientResponse {
     const message = createBaseMsgUnstakeClientResponse();
     return message;
   }
@@ -548,25 +456,7 @@ export const MsgRelayPayment = {
     }
     return message;
   },
-  fromJSON(object: any): MsgRelayPayment {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      relays: Array.isArray(object?.relays) ? object.relays.map((e: any) => RelaySession.fromJSON(e)) : [],
-      descriptionString: isSet(object.descriptionString) ? String(object.descriptionString) : ""
-    };
-  },
-  toJSON(message: MsgRelayPayment): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    if (message.relays) {
-      obj.relays = message.relays.map(e => e ? RelaySession.toJSON(e) : undefined);
-    } else {
-      obj.relays = [];
-    }
-    message.descriptionString !== undefined && (obj.descriptionString = message.descriptionString);
-    return obj;
-  },
-  fromPartial(object: Partial<MsgRelayPayment>): MsgRelayPayment {
+  fromPartial(object: DeepPartial<MsgRelayPayment>): MsgRelayPayment {
     const message = createBaseMsgRelayPayment();
     message.creator = object.creator ?? "";
     message.relays = object.relays?.map(e => RelaySession.fromPartial(e)) || [];
@@ -595,14 +485,7 @@ export const MsgRelayPaymentResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgRelayPaymentResponse {
-    return {};
-  },
-  toJSON(_: MsgRelayPaymentResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgRelayPaymentResponse>): MsgRelayPaymentResponse {
+  fromPartial(_: DeepPartial<MsgRelayPaymentResponse>): MsgRelayPaymentResponse {
     const message = createBaseMsgRelayPaymentResponse();
     return message;
   }
@@ -650,25 +533,7 @@ export const MsgFreezeProvider = {
     }
     return message;
   },
-  fromJSON(object: any): MsgFreezeProvider {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainIds: Array.isArray(object?.chainIds) ? object.chainIds.map((e: any) => String(e)) : [],
-      reason: isSet(object.reason) ? String(object.reason) : ""
-    };
-  },
-  toJSON(message: MsgFreezeProvider): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    if (message.chainIds) {
-      obj.chainIds = message.chainIds.map(e => e);
-    } else {
-      obj.chainIds = [];
-    }
-    message.reason !== undefined && (obj.reason = message.reason);
-    return obj;
-  },
-  fromPartial(object: Partial<MsgFreezeProvider>): MsgFreezeProvider {
+  fromPartial(object: DeepPartial<MsgFreezeProvider>): MsgFreezeProvider {
     const message = createBaseMsgFreezeProvider();
     message.creator = object.creator ?? "";
     message.chainIds = object.chainIds?.map(e => e) || [];
@@ -697,14 +562,7 @@ export const MsgFreezeProviderResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgFreezeProviderResponse {
-    return {};
-  },
-  toJSON(_: MsgFreezeProviderResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgFreezeProviderResponse>): MsgFreezeProviderResponse {
+  fromPartial(_: DeepPartial<MsgFreezeProviderResponse>): MsgFreezeProviderResponse {
     const message = createBaseMsgFreezeProviderResponse();
     return message;
   }
@@ -745,23 +603,7 @@ export const MsgUnfreezeProvider = {
     }
     return message;
   },
-  fromJSON(object: any): MsgUnfreezeProvider {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      chainIds: Array.isArray(object?.chainIds) ? object.chainIds.map((e: any) => String(e)) : []
-    };
-  },
-  toJSON(message: MsgUnfreezeProvider): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    if (message.chainIds) {
-      obj.chainIds = message.chainIds.map(e => e);
-    } else {
-      obj.chainIds = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<MsgUnfreezeProvider>): MsgUnfreezeProvider {
+  fromPartial(object: DeepPartial<MsgUnfreezeProvider>): MsgUnfreezeProvider {
     const message = createBaseMsgUnfreezeProvider();
     message.creator = object.creator ?? "";
     message.chainIds = object.chainIds?.map(e => e) || [];
@@ -789,14 +631,7 @@ export const MsgUnfreezeProviderResponse = {
     }
     return message;
   },
-  fromJSON(_: any): MsgUnfreezeProviderResponse {
-    return {};
-  },
-  toJSON(_: MsgUnfreezeProviderResponse): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<MsgUnfreezeProviderResponse>): MsgUnfreezeProviderResponse {
+  fromPartial(_: DeepPartial<MsgUnfreezeProviderResponse>): MsgUnfreezeProviderResponse {
     const message = createBaseMsgUnfreezeProviderResponse();
     return message;
   }

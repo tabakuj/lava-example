@@ -4,7 +4,7 @@ import { StakeEntry, StakeEntrySDKType } from "../epochstorage/stake_entry";
 import { UniquePaymentStorageClientProvider, UniquePaymentStorageClientProviderSDKType } from "./unique_payment_storage_client_provider";
 import { ProviderPaymentStorage, ProviderPaymentStorageSDKType } from "./provider_payment_storage";
 import { EpochPayments, EpochPaymentsSDKType } from "./epoch_payments";
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
@@ -222,14 +222,7 @@ export const QueryParamsRequest = {
     }
     return message;
   },
-  fromJSON(_: any): QueryParamsRequest {
-    return {};
-  },
-  toJSON(_: QueryParamsRequest): unknown {
-    const obj: any = {};
-    return obj;
-  },
-  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   }
@@ -263,17 +256,7 @@ export const QueryParamsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryParamsResponse {
-    return {
-      params: isSet(object.params) ? Params.fromJSON(object.params) : undefined
-    };
-  },
-  toJSON(message: QueryParamsResponse): unknown {
-    const obj: any = {};
-    message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -315,19 +298,7 @@ export const QueryProvidersRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryProvidersRequest {
-    return {
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      showFrozen: isSet(object.showFrozen) ? Boolean(object.showFrozen) : false
-    };
-  },
-  toJSON(message: QueryProvidersRequest): unknown {
-    const obj: any = {};
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.showFrozen !== undefined && (obj.showFrozen = message.showFrozen);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryProvidersRequest>): QueryProvidersRequest {
+  fromPartial(object: DeepPartial<QueryProvidersRequest>): QueryProvidersRequest {
     const message = createBaseQueryProvidersRequest();
     message.chainID = object.chainID ?? "";
     message.showFrozen = object.showFrozen ?? false;
@@ -370,23 +341,7 @@ export const QueryProvidersResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryProvidersResponse {
-    return {
-      stakeEntry: Array.isArray(object?.stakeEntry) ? object.stakeEntry.map((e: any) => StakeEntry.fromJSON(e)) : [],
-      output: isSet(object.output) ? String(object.output) : ""
-    };
-  },
-  toJSON(message: QueryProvidersResponse): unknown {
-    const obj: any = {};
-    if (message.stakeEntry) {
-      obj.stakeEntry = message.stakeEntry.map(e => e ? StakeEntry.toJSON(e) : undefined);
-    } else {
-      obj.stakeEntry = [];
-    }
-    message.output !== undefined && (obj.output = message.output);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryProvidersResponse>): QueryProvidersResponse {
+  fromPartial(object: DeepPartial<QueryProvidersResponse>): QueryProvidersResponse {
     const message = createBaseQueryProvidersResponse();
     message.stakeEntry = object.stakeEntry?.map(e => StakeEntry.fromPartial(e)) || [];
     message.output = object.output ?? "";
@@ -422,17 +377,7 @@ export const QueryClientsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryClientsRequest {
-    return {
-      chainID: isSet(object.chainID) ? String(object.chainID) : ""
-    };
-  },
-  toJSON(message: QueryClientsRequest): unknown {
-    const obj: any = {};
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryClientsRequest>): QueryClientsRequest {
+  fromPartial(object: DeepPartial<QueryClientsRequest>): QueryClientsRequest {
     const message = createBaseQueryClientsRequest();
     message.chainID = object.chainID ?? "";
     return message;
@@ -474,23 +419,7 @@ export const QueryClientsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryClientsResponse {
-    return {
-      stakeEntry: Array.isArray(object?.stakeEntry) ? object.stakeEntry.map((e: any) => StakeEntry.fromJSON(e)) : [],
-      output: isSet(object.output) ? String(object.output) : ""
-    };
-  },
-  toJSON(message: QueryClientsResponse): unknown {
-    const obj: any = {};
-    if (message.stakeEntry) {
-      obj.stakeEntry = message.stakeEntry.map(e => e ? StakeEntry.toJSON(e) : undefined);
-    } else {
-      obj.stakeEntry = [];
-    }
-    message.output !== undefined && (obj.output = message.output);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryClientsResponse>): QueryClientsResponse {
+  fromPartial(object: DeepPartial<QueryClientsResponse>): QueryClientsResponse {
     const message = createBaseQueryClientsResponse();
     message.stakeEntry = object.stakeEntry?.map(e => StakeEntry.fromPartial(e)) || [];
     message.output = object.output ?? "";
@@ -533,19 +462,7 @@ export const QueryGetPairingRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetPairingRequest {
-    return {
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      client: isSet(object.client) ? String(object.client) : ""
-    };
-  },
-  toJSON(message: QueryGetPairingRequest): unknown {
-    const obj: any = {};
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.client !== undefined && (obj.client = message.client);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetPairingRequest>): QueryGetPairingRequest {
+  fromPartial(object: DeepPartial<QueryGetPairingRequest>): QueryGetPairingRequest {
     const message = createBaseQueryGetPairingRequest();
     message.chainID = object.chainID ?? "";
     message.client = object.client ?? "";
@@ -609,29 +526,7 @@ export const QueryGetPairingResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetPairingResponse {
-    return {
-      providers: Array.isArray(object?.providers) ? object.providers.map((e: any) => StakeEntry.fromJSON(e)) : [],
-      currentEpoch: isSet(object.currentEpoch) ? Long.fromValue(object.currentEpoch) : Long.UZERO,
-      timeLeftToNextPairing: isSet(object.timeLeftToNextPairing) ? Long.fromValue(object.timeLeftToNextPairing) : Long.UZERO,
-      specLastUpdatedBlock: isSet(object.specLastUpdatedBlock) ? Long.fromValue(object.specLastUpdatedBlock) : Long.UZERO,
-      blockOfNextPairing: isSet(object.blockOfNextPairing) ? Long.fromValue(object.blockOfNextPairing) : Long.UZERO
-    };
-  },
-  toJSON(message: QueryGetPairingResponse): unknown {
-    const obj: any = {};
-    if (message.providers) {
-      obj.providers = message.providers.map(e => e ? StakeEntry.toJSON(e) : undefined);
-    } else {
-      obj.providers = [];
-    }
-    message.currentEpoch !== undefined && (obj.currentEpoch = (message.currentEpoch || Long.UZERO).toString());
-    message.timeLeftToNextPairing !== undefined && (obj.timeLeftToNextPairing = (message.timeLeftToNextPairing || Long.UZERO).toString());
-    message.specLastUpdatedBlock !== undefined && (obj.specLastUpdatedBlock = (message.specLastUpdatedBlock || Long.UZERO).toString());
-    message.blockOfNextPairing !== undefined && (obj.blockOfNextPairing = (message.blockOfNextPairing || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetPairingResponse>): QueryGetPairingResponse {
+  fromPartial(object: DeepPartial<QueryGetPairingResponse>): QueryGetPairingResponse {
     const message = createBaseQueryGetPairingResponse();
     message.providers = object.providers?.map(e => StakeEntry.fromPartial(e)) || [];
     message.currentEpoch = object.currentEpoch !== undefined && object.currentEpoch !== null ? Long.fromValue(object.currentEpoch) : Long.UZERO;
@@ -691,23 +586,7 @@ export const QueryVerifyPairingRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryVerifyPairingRequest {
-    return {
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      client: isSet(object.client) ? String(object.client) : "",
-      provider: isSet(object.provider) ? String(object.provider) : "",
-      block: isSet(object.block) ? Long.fromValue(object.block) : Long.UZERO
-    };
-  },
-  toJSON(message: QueryVerifyPairingRequest): unknown {
-    const obj: any = {};
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.client !== undefined && (obj.client = message.client);
-    message.provider !== undefined && (obj.provider = message.provider);
-    message.block !== undefined && (obj.block = (message.block || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<QueryVerifyPairingRequest>): QueryVerifyPairingRequest {
+  fromPartial(object: DeepPartial<QueryVerifyPairingRequest>): QueryVerifyPairingRequest {
     const message = createBaseQueryVerifyPairingRequest();
     message.chainID = object.chainID ?? "";
     message.client = object.client ?? "";
@@ -759,21 +638,7 @@ export const QueryVerifyPairingResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryVerifyPairingResponse {
-    return {
-      valid: isSet(object.valid) ? Boolean(object.valid) : false,
-      pairedProviders: isSet(object.pairedProviders) ? Long.fromValue(object.pairedProviders) : Long.UZERO,
-      cuPerEpoch: isSet(object.cuPerEpoch) ? Long.fromValue(object.cuPerEpoch) : Long.UZERO
-    };
-  },
-  toJSON(message: QueryVerifyPairingResponse): unknown {
-    const obj: any = {};
-    message.valid !== undefined && (obj.valid = message.valid);
-    message.pairedProviders !== undefined && (obj.pairedProviders = (message.pairedProviders || Long.UZERO).toString());
-    message.cuPerEpoch !== undefined && (obj.cuPerEpoch = (message.cuPerEpoch || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<QueryVerifyPairingResponse>): QueryVerifyPairingResponse {
+  fromPartial(object: DeepPartial<QueryVerifyPairingResponse>): QueryVerifyPairingResponse {
     const message = createBaseQueryVerifyPairingResponse();
     message.valid = object.valid ?? false;
     message.pairedProviders = object.pairedProviders !== undefined && object.pairedProviders !== null ? Long.fromValue(object.pairedProviders) : Long.UZERO;
@@ -810,17 +675,7 @@ export const QueryGetUniquePaymentStorageClientProviderRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetUniquePaymentStorageClientProviderRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetUniquePaymentStorageClientProviderRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetUniquePaymentStorageClientProviderRequest>): QueryGetUniquePaymentStorageClientProviderRequest {
+  fromPartial(object: DeepPartial<QueryGetUniquePaymentStorageClientProviderRequest>): QueryGetUniquePaymentStorageClientProviderRequest {
     const message = createBaseQueryGetUniquePaymentStorageClientProviderRequest();
     message.index = object.index ?? "";
     return message;
@@ -855,17 +710,7 @@ export const QueryGetUniquePaymentStorageClientProviderResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetUniquePaymentStorageClientProviderResponse {
-    return {
-      uniquePaymentStorageClientProvider: isSet(object.uniquePaymentStorageClientProvider) ? UniquePaymentStorageClientProvider.fromJSON(object.uniquePaymentStorageClientProvider) : undefined
-    };
-  },
-  toJSON(message: QueryGetUniquePaymentStorageClientProviderResponse): unknown {
-    const obj: any = {};
-    message.uniquePaymentStorageClientProvider !== undefined && (obj.uniquePaymentStorageClientProvider = message.uniquePaymentStorageClientProvider ? UniquePaymentStorageClientProvider.toJSON(message.uniquePaymentStorageClientProvider) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetUniquePaymentStorageClientProviderResponse>): QueryGetUniquePaymentStorageClientProviderResponse {
+  fromPartial(object: DeepPartial<QueryGetUniquePaymentStorageClientProviderResponse>): QueryGetUniquePaymentStorageClientProviderResponse {
     const message = createBaseQueryGetUniquePaymentStorageClientProviderResponse();
     message.uniquePaymentStorageClientProvider = object.uniquePaymentStorageClientProvider !== undefined && object.uniquePaymentStorageClientProvider !== null ? UniquePaymentStorageClientProvider.fromPartial(object.uniquePaymentStorageClientProvider) : undefined;
     return message;
@@ -900,17 +745,7 @@ export const QueryAllUniquePaymentStorageClientProviderRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllUniquePaymentStorageClientProviderRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllUniquePaymentStorageClientProviderRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllUniquePaymentStorageClientProviderRequest>): QueryAllUniquePaymentStorageClientProviderRequest {
+  fromPartial(object: DeepPartial<QueryAllUniquePaymentStorageClientProviderRequest>): QueryAllUniquePaymentStorageClientProviderRequest {
     const message = createBaseQueryAllUniquePaymentStorageClientProviderRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -952,23 +787,7 @@ export const QueryAllUniquePaymentStorageClientProviderResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllUniquePaymentStorageClientProviderResponse {
-    return {
-      uniquePaymentStorageClientProvider: Array.isArray(object?.uniquePaymentStorageClientProvider) ? object.uniquePaymentStorageClientProvider.map((e: any) => UniquePaymentStorageClientProvider.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllUniquePaymentStorageClientProviderResponse): unknown {
-    const obj: any = {};
-    if (message.uniquePaymentStorageClientProvider) {
-      obj.uniquePaymentStorageClientProvider = message.uniquePaymentStorageClientProvider.map(e => e ? UniquePaymentStorageClientProvider.toJSON(e) : undefined);
-    } else {
-      obj.uniquePaymentStorageClientProvider = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllUniquePaymentStorageClientProviderResponse>): QueryAllUniquePaymentStorageClientProviderResponse {
+  fromPartial(object: DeepPartial<QueryAllUniquePaymentStorageClientProviderResponse>): QueryAllUniquePaymentStorageClientProviderResponse {
     const message = createBaseQueryAllUniquePaymentStorageClientProviderResponse();
     message.uniquePaymentStorageClientProvider = object.uniquePaymentStorageClientProvider?.map(e => UniquePaymentStorageClientProvider.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1004,17 +823,7 @@ export const QueryGetProviderPaymentStorageRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetProviderPaymentStorageRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetProviderPaymentStorageRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetProviderPaymentStorageRequest>): QueryGetProviderPaymentStorageRequest {
+  fromPartial(object: DeepPartial<QueryGetProviderPaymentStorageRequest>): QueryGetProviderPaymentStorageRequest {
     const message = createBaseQueryGetProviderPaymentStorageRequest();
     message.index = object.index ?? "";
     return message;
@@ -1049,17 +858,7 @@ export const QueryGetProviderPaymentStorageResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetProviderPaymentStorageResponse {
-    return {
-      providerPaymentStorage: isSet(object.providerPaymentStorage) ? ProviderPaymentStorage.fromJSON(object.providerPaymentStorage) : undefined
-    };
-  },
-  toJSON(message: QueryGetProviderPaymentStorageResponse): unknown {
-    const obj: any = {};
-    message.providerPaymentStorage !== undefined && (obj.providerPaymentStorage = message.providerPaymentStorage ? ProviderPaymentStorage.toJSON(message.providerPaymentStorage) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetProviderPaymentStorageResponse>): QueryGetProviderPaymentStorageResponse {
+  fromPartial(object: DeepPartial<QueryGetProviderPaymentStorageResponse>): QueryGetProviderPaymentStorageResponse {
     const message = createBaseQueryGetProviderPaymentStorageResponse();
     message.providerPaymentStorage = object.providerPaymentStorage !== undefined && object.providerPaymentStorage !== null ? ProviderPaymentStorage.fromPartial(object.providerPaymentStorage) : undefined;
     return message;
@@ -1094,17 +893,7 @@ export const QueryAllProviderPaymentStorageRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllProviderPaymentStorageRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllProviderPaymentStorageRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllProviderPaymentStorageRequest>): QueryAllProviderPaymentStorageRequest {
+  fromPartial(object: DeepPartial<QueryAllProviderPaymentStorageRequest>): QueryAllProviderPaymentStorageRequest {
     const message = createBaseQueryAllProviderPaymentStorageRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -1146,23 +935,7 @@ export const QueryAllProviderPaymentStorageResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllProviderPaymentStorageResponse {
-    return {
-      providerPaymentStorage: Array.isArray(object?.providerPaymentStorage) ? object.providerPaymentStorage.map((e: any) => ProviderPaymentStorage.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllProviderPaymentStorageResponse): unknown {
-    const obj: any = {};
-    if (message.providerPaymentStorage) {
-      obj.providerPaymentStorage = message.providerPaymentStorage.map(e => e ? ProviderPaymentStorage.toJSON(e) : undefined);
-    } else {
-      obj.providerPaymentStorage = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllProviderPaymentStorageResponse>): QueryAllProviderPaymentStorageResponse {
+  fromPartial(object: DeepPartial<QueryAllProviderPaymentStorageResponse>): QueryAllProviderPaymentStorageResponse {
     const message = createBaseQueryAllProviderPaymentStorageResponse();
     message.providerPaymentStorage = object.providerPaymentStorage?.map(e => ProviderPaymentStorage.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1198,17 +971,7 @@ export const QueryGetEpochPaymentsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetEpochPaymentsRequest {
-    return {
-      index: isSet(object.index) ? String(object.index) : ""
-    };
-  },
-  toJSON(message: QueryGetEpochPaymentsRequest): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetEpochPaymentsRequest>): QueryGetEpochPaymentsRequest {
+  fromPartial(object: DeepPartial<QueryGetEpochPaymentsRequest>): QueryGetEpochPaymentsRequest {
     const message = createBaseQueryGetEpochPaymentsRequest();
     message.index = object.index ?? "";
     return message;
@@ -1243,17 +1006,7 @@ export const QueryGetEpochPaymentsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryGetEpochPaymentsResponse {
-    return {
-      epochPayments: isSet(object.epochPayments) ? EpochPayments.fromJSON(object.epochPayments) : undefined
-    };
-  },
-  toJSON(message: QueryGetEpochPaymentsResponse): unknown {
-    const obj: any = {};
-    message.epochPayments !== undefined && (obj.epochPayments = message.epochPayments ? EpochPayments.toJSON(message.epochPayments) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryGetEpochPaymentsResponse>): QueryGetEpochPaymentsResponse {
+  fromPartial(object: DeepPartial<QueryGetEpochPaymentsResponse>): QueryGetEpochPaymentsResponse {
     const message = createBaseQueryGetEpochPaymentsResponse();
     message.epochPayments = object.epochPayments !== undefined && object.epochPayments !== null ? EpochPayments.fromPartial(object.epochPayments) : undefined;
     return message;
@@ -1288,17 +1041,7 @@ export const QueryAllEpochPaymentsRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllEpochPaymentsRequest {
-    return {
-      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllEpochPaymentsRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllEpochPaymentsRequest>): QueryAllEpochPaymentsRequest {
+  fromPartial(object: DeepPartial<QueryAllEpochPaymentsRequest>): QueryAllEpochPaymentsRequest {
     const message = createBaseQueryAllEpochPaymentsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -1340,23 +1083,7 @@ export const QueryAllEpochPaymentsResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryAllEpochPaymentsResponse {
-    return {
-      epochPayments: Array.isArray(object?.epochPayments) ? object.epochPayments.map((e: any) => EpochPayments.fromJSON(e)) : [],
-      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
-    };
-  },
-  toJSON(message: QueryAllEpochPaymentsResponse): unknown {
-    const obj: any = {};
-    if (message.epochPayments) {
-      obj.epochPayments = message.epochPayments.map(e => e ? EpochPayments.toJSON(e) : undefined);
-    } else {
-      obj.epochPayments = [];
-    }
-    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryAllEpochPaymentsResponse>): QueryAllEpochPaymentsResponse {
+  fromPartial(object: DeepPartial<QueryAllEpochPaymentsResponse>): QueryAllEpochPaymentsResponse {
     const message = createBaseQueryAllEpochPaymentsResponse();
     message.epochPayments = object.epochPayments?.map(e => EpochPayments.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1406,21 +1133,7 @@ export const QueryUserEntryRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryUserEntryRequest {
-    return {
-      address: isSet(object.address) ? String(object.address) : "",
-      chainID: isSet(object.chainID) ? String(object.chainID) : "",
-      block: isSet(object.block) ? Long.fromValue(object.block) : Long.UZERO
-    };
-  },
-  toJSON(message: QueryUserEntryRequest): unknown {
-    const obj: any = {};
-    message.address !== undefined && (obj.address = message.address);
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    message.block !== undefined && (obj.block = (message.block || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<QueryUserEntryRequest>): QueryUserEntryRequest {
+  fromPartial(object: DeepPartial<QueryUserEntryRequest>): QueryUserEntryRequest {
     const message = createBaseQueryUserEntryRequest();
     message.address = object.address ?? "";
     message.chainID = object.chainID ?? "";
@@ -1464,19 +1177,7 @@ export const QueryUserEntryResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryUserEntryResponse {
-    return {
-      consumer: isSet(object.consumer) ? StakeEntry.fromJSON(object.consumer) : undefined,
-      maxCU: isSet(object.maxCU) ? Long.fromValue(object.maxCU) : Long.UZERO
-    };
-  },
-  toJSON(message: QueryUserEntryResponse): unknown {
-    const obj: any = {};
-    message.consumer !== undefined && (obj.consumer = message.consumer ? StakeEntry.toJSON(message.consumer) : undefined);
-    message.maxCU !== undefined && (obj.maxCU = (message.maxCU || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<QueryUserEntryResponse>): QueryUserEntryResponse {
+  fromPartial(object: DeepPartial<QueryUserEntryResponse>): QueryUserEntryResponse {
     const message = createBaseQueryUserEntryResponse();
     message.consumer = object.consumer !== undefined && object.consumer !== null ? StakeEntry.fromPartial(object.consumer) : undefined;
     message.maxCU = object.maxCU !== undefined && object.maxCU !== null ? Long.fromValue(object.maxCU) : Long.UZERO;
@@ -1512,17 +1213,7 @@ export const QueryStaticProvidersListRequest = {
     }
     return message;
   },
-  fromJSON(object: any): QueryStaticProvidersListRequest {
-    return {
-      chainID: isSet(object.chainID) ? String(object.chainID) : ""
-    };
-  },
-  toJSON(message: QueryStaticProvidersListRequest): unknown {
-    const obj: any = {};
-    message.chainID !== undefined && (obj.chainID = message.chainID);
-    return obj;
-  },
-  fromPartial(object: Partial<QueryStaticProvidersListRequest>): QueryStaticProvidersListRequest {
+  fromPartial(object: DeepPartial<QueryStaticProvidersListRequest>): QueryStaticProvidersListRequest {
     const message = createBaseQueryStaticProvidersListRequest();
     message.chainID = object.chainID ?? "";
     return message;
@@ -1557,21 +1248,7 @@ export const QueryStaticProvidersListResponse = {
     }
     return message;
   },
-  fromJSON(object: any): QueryStaticProvidersListResponse {
-    return {
-      providers: Array.isArray(object?.providers) ? object.providers.map((e: any) => StakeEntry.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: QueryStaticProvidersListResponse): unknown {
-    const obj: any = {};
-    if (message.providers) {
-      obj.providers = message.providers.map(e => e ? StakeEntry.toJSON(e) : undefined);
-    } else {
-      obj.providers = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<QueryStaticProvidersListResponse>): QueryStaticProvidersListResponse {
+  fromPartial(object: DeepPartial<QueryStaticProvidersListResponse>): QueryStaticProvidersListResponse {
     const message = createBaseQueryStaticProvidersListResponse();
     message.providers = object.providers?.map(e => StakeEntry.fromPartial(e)) || [];
     return message;

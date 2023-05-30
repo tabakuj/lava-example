@@ -10,11 +10,11 @@ export const createRPCQueryClient = async ({
   return {
     lavanet: {
       lava: {
-        conflict: (await import("../conflict/query.rpc.Query")).createRpcQueryExtension(client),
-        epochstorage: (await import("../epochstorage/query.rpc.Query")).createRpcQueryExtension(client),
-        pairing: (await import("../pairing/query.rpc.Query")).createRpcQueryExtension(client),
-        plans: (await import("../plans/query.rpc.Query")).createRpcQueryExtension(client),
-        projects: (await import("../projects/query.rpc.Query")).createRpcQueryExtension(client),
+        conflict: (await import("../proto/conflict/query.rpc.Query")).createRpcQueryExtension(client),
+        epochstorage: (await import("../proto/epochstorage/query.rpc.Query")).createRpcQueryExtension(client),
+        pairing: (await import("../proto/pairing/query.rpc.Query")).createRpcQueryExtension(client),
+        plans: (await import("../proto/plans/query.rpc.Query")).createRpcQueryExtension(client),
+        projects: (await import("../proto/projects/query.rpc.Query")).createRpcQueryExtension(client),
         spec: (await import("../spec/query.rpc.Query")).createRpcQueryExtension(client),
         subscription: (await import("../subscription/query.rpc.Query")).createRpcQueryExtension(client)
       }

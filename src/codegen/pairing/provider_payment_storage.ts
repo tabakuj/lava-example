@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface ProviderPaymentStorage {
   index: string;
@@ -63,27 +63,7 @@ export const ProviderPaymentStorage = {
     }
     return message;
   },
-  fromJSON(object: any): ProviderPaymentStorage {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      epoch: isSet(object.epoch) ? Long.fromValue(object.epoch) : Long.UZERO,
-      uniquePaymentStorageClientProviderKeys: Array.isArray(object?.uniquePaymentStorageClientProviderKeys) ? object.uniquePaymentStorageClientProviderKeys.map((e: any) => String(e)) : [],
-      complainersTotalCu: isSet(object.complainersTotalCu) ? Long.fromValue(object.complainersTotalCu) : Long.UZERO
-    };
-  },
-  toJSON(message: ProviderPaymentStorage): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    message.epoch !== undefined && (obj.epoch = (message.epoch || Long.UZERO).toString());
-    if (message.uniquePaymentStorageClientProviderKeys) {
-      obj.uniquePaymentStorageClientProviderKeys = message.uniquePaymentStorageClientProviderKeys.map(e => e);
-    } else {
-      obj.uniquePaymentStorageClientProviderKeys = [];
-    }
-    message.complainersTotalCu !== undefined && (obj.complainersTotalCu = (message.complainersTotalCu || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<ProviderPaymentStorage>): ProviderPaymentStorage {
+  fromPartial(object: DeepPartial<ProviderPaymentStorage>): ProviderPaymentStorage {
     const message = createBaseProviderPaymentStorage();
     message.index = object.index ?? "";
     message.epoch = object.epoch !== undefined && object.epoch !== null ? Long.fromValue(object.epoch) : Long.UZERO;

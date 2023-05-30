@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface Subscription {
   /** creator pays for the subscription */
@@ -146,39 +146,7 @@ export const Subscription = {
     }
     return message;
   },
-  fromJSON(object: any): Subscription {
-    return {
-      creator: isSet(object.creator) ? String(object.creator) : "",
-      consumer: isSet(object.consumer) ? String(object.consumer) : "",
-      block: isSet(object.block) ? Long.fromValue(object.block) : Long.UZERO,
-      planIndex: isSet(object.planIndex) ? String(object.planIndex) : "",
-      planBlock: isSet(object.planBlock) ? Long.fromValue(object.planBlock) : Long.UZERO,
-      durationTotal: isSet(object.durationTotal) ? Long.fromValue(object.durationTotal) : Long.UZERO,
-      durationLeft: isSet(object.durationLeft) ? Long.fromValue(object.durationLeft) : Long.UZERO,
-      monthExpiryTime: isSet(object.monthExpiryTime) ? Long.fromValue(object.monthExpiryTime) : Long.UZERO,
-      prevExpiryBlock: isSet(object.prevExpiryBlock) ? Long.fromValue(object.prevExpiryBlock) : Long.UZERO,
-      monthCuTotal: isSet(object.monthCuTotal) ? Long.fromValue(object.monthCuTotal) : Long.UZERO,
-      monthCuLeft: isSet(object.monthCuLeft) ? Long.fromValue(object.monthCuLeft) : Long.UZERO,
-      prevCuLeft: isSet(object.prevCuLeft) ? Long.fromValue(object.prevCuLeft) : Long.UZERO
-    };
-  },
-  toJSON(message: Subscription): unknown {
-    const obj: any = {};
-    message.creator !== undefined && (obj.creator = message.creator);
-    message.consumer !== undefined && (obj.consumer = message.consumer);
-    message.block !== undefined && (obj.block = (message.block || Long.UZERO).toString());
-    message.planIndex !== undefined && (obj.planIndex = message.planIndex);
-    message.planBlock !== undefined && (obj.planBlock = (message.planBlock || Long.UZERO).toString());
-    message.durationTotal !== undefined && (obj.durationTotal = (message.durationTotal || Long.UZERO).toString());
-    message.durationLeft !== undefined && (obj.durationLeft = (message.durationLeft || Long.UZERO).toString());
-    message.monthExpiryTime !== undefined && (obj.monthExpiryTime = (message.monthExpiryTime || Long.UZERO).toString());
-    message.prevExpiryBlock !== undefined && (obj.prevExpiryBlock = (message.prevExpiryBlock || Long.UZERO).toString());
-    message.monthCuTotal !== undefined && (obj.monthCuTotal = (message.monthCuTotal || Long.UZERO).toString());
-    message.monthCuLeft !== undefined && (obj.monthCuLeft = (message.monthCuLeft || Long.UZERO).toString());
-    message.prevCuLeft !== undefined && (obj.prevCuLeft = (message.prevCuLeft || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Subscription>): Subscription {
+  fromPartial(object: DeepPartial<Subscription>): Subscription {
     const message = createBaseSubscription();
     message.creator = object.creator ?? "";
     message.consumer = object.consumer ?? "";

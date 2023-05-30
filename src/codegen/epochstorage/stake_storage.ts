@@ -1,6 +1,6 @@
 import { StakeEntry, StakeEntrySDKType } from "./stake_entry";
 import * as _m0 from "protobufjs/minimal";
-import { isSet, bytesFromBase64, base64FromBytes } from "../helpers";
+import { DeepPartial } from "../helpers";
 export interface StakeStorage {
   index: string;
   stakeEntries: StakeEntry[];
@@ -54,25 +54,7 @@ export const StakeStorage = {
     }
     return message;
   },
-  fromJSON(object: any): StakeStorage {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      stakeEntries: Array.isArray(object?.stakeEntries) ? object.stakeEntries.map((e: any) => StakeEntry.fromJSON(e)) : [],
-      epochBlockHash: isSet(object.epochBlockHash) ? bytesFromBase64(object.epochBlockHash) : new Uint8Array()
-    };
-  },
-  toJSON(message: StakeStorage): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    if (message.stakeEntries) {
-      obj.stakeEntries = message.stakeEntries.map(e => e ? StakeEntry.toJSON(e) : undefined);
-    } else {
-      obj.stakeEntries = [];
-    }
-    message.epochBlockHash !== undefined && (obj.epochBlockHash = base64FromBytes(message.epochBlockHash !== undefined ? message.epochBlockHash : new Uint8Array()));
-    return obj;
-  },
-  fromPartial(object: Partial<StakeStorage>): StakeStorage {
+  fromPartial(object: DeepPartial<StakeStorage>): StakeStorage {
     const message = createBaseStakeStorage();
     message.index = object.index ?? "";
     message.stakeEntries = object.stakeEntries?.map(e => StakeEntry.fromPartial(e)) || [];

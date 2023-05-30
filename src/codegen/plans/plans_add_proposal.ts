@@ -1,6 +1,6 @@
 import { Plan, PlanSDKType } from "./plan";
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 export interface PlansAddProposal {
   title: string;
   description: string;
@@ -54,25 +54,7 @@ export const PlansAddProposal = {
     }
     return message;
   },
-  fromJSON(object: any): PlansAddProposal {
-    return {
-      title: isSet(object.title) ? String(object.title) : "",
-      description: isSet(object.description) ? String(object.description) : "",
-      plans: Array.isArray(object?.plans) ? object.plans.map((e: any) => Plan.fromJSON(e)) : []
-    };
-  },
-  toJSON(message: PlansAddProposal): unknown {
-    const obj: any = {};
-    message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
-    if (message.plans) {
-      obj.plans = message.plans.map(e => e ? Plan.toJSON(e) : undefined);
-    } else {
-      obj.plans = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<PlansAddProposal>): PlansAddProposal {
+  fromPartial(object: DeepPartial<PlansAddProposal>): PlansAddProposal {
     const message = createBasePlansAddProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";

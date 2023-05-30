@@ -1,4 +1,4 @@
-import { Long, isSet } from "../helpers";
+import { Long, DeepPartial } from "../helpers";
 import * as _m0 from "protobufjs/minimal";
 export interface Endpoint {
   iPPORT: string;
@@ -53,21 +53,7 @@ export const Endpoint = {
     }
     return message;
   },
-  fromJSON(object: any): Endpoint {
-    return {
-      iPPORT: isSet(object.iPPORT) ? String(object.iPPORT) : "",
-      useType: isSet(object.useType) ? String(object.useType) : "",
-      geolocation: isSet(object.geolocation) ? Long.fromValue(object.geolocation) : Long.UZERO
-    };
-  },
-  toJSON(message: Endpoint): unknown {
-    const obj: any = {};
-    message.iPPORT !== undefined && (obj.iPPORT = message.iPPORT);
-    message.useType !== undefined && (obj.useType = message.useType);
-    message.geolocation !== undefined && (obj.geolocation = (message.geolocation || Long.UZERO).toString());
-    return obj;
-  },
-  fromPartial(object: Partial<Endpoint>): Endpoint {
+  fromPartial(object: DeepPartial<Endpoint>): Endpoint {
     const message = createBaseEndpoint();
     message.iPPORT = object.iPPORT ?? "";
     message.useType = object.useType ?? "";

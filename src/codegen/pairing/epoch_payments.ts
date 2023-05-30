@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { isSet } from "../helpers";
+import { DeepPartial } from "../helpers";
 export interface EpochPayments {
   index: string;
   providerPaymentStorageKeys: string[];
@@ -44,23 +44,7 @@ export const EpochPayments = {
     }
     return message;
   },
-  fromJSON(object: any): EpochPayments {
-    return {
-      index: isSet(object.index) ? String(object.index) : "",
-      providerPaymentStorageKeys: Array.isArray(object?.providerPaymentStorageKeys) ? object.providerPaymentStorageKeys.map((e: any) => String(e)) : []
-    };
-  },
-  toJSON(message: EpochPayments): unknown {
-    const obj: any = {};
-    message.index !== undefined && (obj.index = message.index);
-    if (message.providerPaymentStorageKeys) {
-      obj.providerPaymentStorageKeys = message.providerPaymentStorageKeys.map(e => e);
-    } else {
-      obj.providerPaymentStorageKeys = [];
-    }
-    return obj;
-  },
-  fromPartial(object: Partial<EpochPayments>): EpochPayments {
+  fromPartial(object: DeepPartial<EpochPayments>): EpochPayments {
     const message = createBaseEpochPayments();
     message.index = object.index ?? "";
     message.providerPaymentStorageKeys = object.providerPaymentStorageKeys?.map(e => e) || [];
