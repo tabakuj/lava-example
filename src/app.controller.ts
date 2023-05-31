@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { LavaClientService2 } from './lava-service';
 
@@ -14,7 +14,16 @@ export class AppController {
   @Post()
   async createProject(@Body() projectBody: ProjectBody): Promise<string> {
     if (!projectBody) return 'bad Request.';
-    const result = await this.client2.buySubscription(
+    const result = await this.client2.AddProject(
+      projectBody.name,
+      projectBody.key,
+    );
+    return result;
+  }
+  @Put()
+  async UpdateProject(@Body() projectBody: ProjectBody): Promise<string> {
+    if (!projectBody) return 'bad Request.';
+    const result = await this.client2.UpdateProject(
       projectBody.name,
       projectBody.key,
     );

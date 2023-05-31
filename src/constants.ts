@@ -1,4 +1,4 @@
 export const AdminHex =
-    'a46c9e0ae1bf88826c74d7b53dc183b353d9341385083cc5e8ad3342e1eda893';
-export const AdminPublicKey = 'lava@1aa79e358da9udfsnhdxvg8thxczrz88qtza52y';
+    'ab19ea720177c2a73cf5e02f528d04bd1bff4f61c54b7859fac9978954d6d6aa';
+export const AdminPublicKey = 'lava@13z5dft9pvzgucxh0dxfwe7wrerkc8v549xkn5n';
 export const LAVA_PUBLIC_RPC = 'http://127.0.0.1:26657/';

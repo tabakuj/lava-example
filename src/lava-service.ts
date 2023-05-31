@@ -8,8 +8,7 @@ import { getSigningLavanetClient } from '@lavanet/lavajs';
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { AdminHex, AdminPublicKey, LAVA_PUBLIC_RPC } from './constants';
 import { MsgAddProject } from '@lavanet/lavajs/types/codegen/subscription/tx';
-
-const unInitializedClient = new Error('client uninitialized');
+import {MsgAddKeys} from "@lavanet/lavajs/types/codegen/proto/projects/tx";
 
 @Injectable()
 export class LavaClientService2 {
@@ -28,7 +27,7 @@ export class LavaClientService2 {
     return DirectSecp256k1Wallet.fromKey(fromHex(AdminHex), 'lava@');
   };
 
-  async buySubscription(projectName: string, projectKey: string) {
+  async AddProject(projectName: string, projectKey: string) {
     const offlineSigner = await this.getAdminSignerFromPriKey();
 
     const starGateClient = await getSigningLavanetClient({
@@ -43,7 +42,7 @@ export class LavaClientService2 {
       projectData: {
         name: projectName,
         enabled: true,
-        description: 'testing',
+        description: 'testing 2',
         projectKeys: [
           {
             key: projectKey,
@@ -78,6 +77,54 @@ export class LavaClientService2 {
       );
       console.log('send the request');
       console.log(response);
+    } catch (ex) {
+      console.error(ex);
+    } finally {
+      starGateClient.disconnect();
+    }
+  }
+
+  async UpdateProject(projectName: string, projectKey: string) {
+    console.log('updating project.');
+    const offlineSigner = await this.getAdminSignerFromPriKey();
+
+    const starGateClient = await getSigningLavanetClient({
+      rpcEndpoint: LAVA_PUBLIC_RPC,
+      signer: offlineSigner,
+    });
+    if (!starGateClient) {
+      return 'Failed to get stargate Client';
+    }
+    const data: MsgAddKeys = {
+      creator: AdminPublicKey,
+      project: projectName,
+      projectKeys: [
+        {
+          key: projectKey,
+          kinds: 2,
+        },
+      ],
+    };
+    const msg = {
+      typeUrl: '/lavanet.lava.projects.MsgAddKeys',
+      value: data,
+    };
+    const fee = {
+      amount: [{ amount: '1', denom: 'ulava' }], // Replace with the desired fee amount and token denomination
+      gas: '50000000', // Replace with the desired gas limit
+    };
+    const memo = `Adding new project with name ${projectName}`;
+
+    try {
+      const response = await starGateClient.signAndBroadcast(
+        AdminPublicKey,
+        [msg],
+        fee,
+        memo,
+      );
+      console.log('send the request');
+      console.log(response);
+      //response.code==0 means su
     } catch (ex) {
       console.error(ex);
     } finally {
