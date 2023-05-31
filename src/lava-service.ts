@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { DirectSecp256k1Wallet, OfflineDirectSigner } from '@cosmjs/proto-signing';
+import {
+  DirectSecp256k1Wallet,
+  OfflineDirectSigner,
+} from '@cosmjs/proto-signing';
 import { fromHex } from '@cosmjs/encoding';
 import { getSigningLavanetClient } from '@lavanet/lavajs';
 import { SigningStargateClient } from '@cosmjs/stargate';
-import {AdminHex, AdminPublicKey, LAVA_PUBLIC_RPC} from "./Constants";
+import { AdminHex, AdminPublicKey, LAVA_PUBLIC_RPC } from './constants';
+import { MsgAddProject } from '@lavanet/lavajs/types/codegen/subscription/tx';
 
 const unInitializedClient = new Error('client uninitialized');
-
 
 @Injectable()
 export class LavaClientService2 {
@@ -35,25 +38,30 @@ export class LavaClientService2 {
     if (!starGateClient) {
       return 'Failed to get stargate Client';
     }
-    const msg = {
-      typeUrl: '/lavanet.lava.subscription.MsgAddProject',
-      value: {
-        creator: AdminPublicKey,
-        projectData: {
-          name: projectName,
-          description: 'testing purposes',
-          enabled: true,
-          usedCu: 1,
-          subscription: AdminPublicKey,
-          projectKeys: [
-            {
-              key: projectKey,
-              kinds: 1,
-            },
-          ],
-          policy: null,
+    const data = {
+      creator: AdminPublicKey,
+      projectData: {
+        name: projectName,
+        enabled: true,
+        description: 'testing',
+        projectKeys: [
+          {
+            key: projectKey,
+            kinds: 2,
+          },
+        ],
+        policy: {
+          maxProvidersToPair: 2,
+          chainPolicies: [],
+          geolocationProfile: 1,
+          totalCuLimit: 200,
+          epochCuLimit: 10,
         },
       },
+    };
+    const msg = {
+      typeUrl: '/lavanet.lava.subscription.MsgAddProject',
+      value: data,
     };
     const fee = {
       amount: [{ amount: '1', denom: 'ulava' }], // Replace with the desired fee amount and token denomination
